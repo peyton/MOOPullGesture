@@ -19,6 +19,7 @@
 #define AH_AUTORELEASE(x) (x)
 #define AH_SUPER_DEALLOC
 #else
+#warning "Compiling MOOPullGesture without ARC is beta and may not work. Use at your own risk"
 #define __AH_WEAK
 #define AH_WEAK assign
 #define AH_RETAIN(x) [(x) retain]

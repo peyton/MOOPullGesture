@@ -48,7 +48,26 @@
 	
     // Add pull gesture recognizer
     MOOPullGestureRecognizer *recognizer = [[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    recognizer.triggerView = [[MOOCreateView alloc] initWithCellClass:[UITableViewCell class] style:UITableViewCellStyleDefault];
+    MOOCreateView *createView = [[MOOCreateView alloc] initWithCellClass:[UITableViewCell class] style:UITableViewCellStyleDefault];
+    createView.configurationBlock = ^(MOOCreateView *view, UITableViewCell *cell, MOOPullState state){
+        if (![cell isKindOfClass:[UITableViewCell class]])
+            return;
+        
+        cell.backgroundColor = [UIColor whiteColor];
+        
+        switch (state)
+        {
+            case MOOPullActive:
+            case MOOPullTriggered:
+                cell.textLabel.text = NSLocalizedStringFromTable(@"Release to create item\u2026", @"MOOPullGesture", @"Release to create item");
+                break;
+            case MOOPullIdle:
+                cell.textLabel.text = NSLocalizedStringFromTable(@"Pull to create item\u2026", @"MOOPullGesture", @"Pull to create item");
+                break;
+                
+        }
+    };
+    recognizer.triggerView = createView;
     [self.tableView addGestureRecognizer:recognizer];
 }
 
@@ -75,6 +94,10 @@
 
 - (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 {
+    _dataSource.numberOfRows++;
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
     [pullGestureRecognizer resetPullState];
 }
 

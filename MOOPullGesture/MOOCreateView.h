@@ -21,14 +21,17 @@
 
 @end
 
+typedef void (^MOOCreateViewConfiguration)(MOOCreateView *createView, UITableViewCell *cell, MOOPullState state);
+
 @interface MOOCreateView : UIView <MOOTriggerView> 
 {
     __unsafe_unretained id<MOOCreateViewDelegate> _delegate;
-    
+    MOOCreateViewConfiguration _configurationBlock;
     UITableViewCell *_cell;
 }
 
 @property (nonatomic, unsafe_unretained) id<MOOCreateViewDelegate> delegate;
+@property (nonatomic, strong) MOOCreateViewConfiguration configurationBlock;
 @property (nonatomic, strong, readonly) UITableViewCell *cell;
 
 - (id)initWithCellClass:(Class)cellClass style:(UITableViewCellStyle)style;

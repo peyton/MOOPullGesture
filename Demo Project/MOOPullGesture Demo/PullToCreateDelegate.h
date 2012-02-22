@@ -9,6 +9,6 @@
 
 #import "MOOCreateView.h"
 
-@interface PullToCreateDelegate : NSObject <UITableViewDelegate, MOOCreateViewDelegate>
+@interface PullToCreateDelegate : NSObject <UITableViewDelegate>
 
 @end

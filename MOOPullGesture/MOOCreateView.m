@@ -16,6 +16,7 @@
 
 @implementation MOOCreateView
 @synthesize delegate = _delegate;
+@synthesize configurationBlock = _configurationBlock;
 @synthesize cell = _cell;
 @dynamic events;
 
@@ -93,7 +94,9 @@
 
 - (void)transitionToPullState:(MOOPullState)pullState;
 {
-    if ([self.delegate respondsToSelector:@selector(createView:configureCell:forState:)])
+    if (self.configurationBlock)
+        self.configurationBlock(self, self.cell, pullState);
+    else if ([self.delegate respondsToSelector:@selector(createView:configureCell:forState:)])
         [self.delegate createView:self configureCell:self.cell forState:pullState];
 }
 
