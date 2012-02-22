@@ -42,7 +42,6 @@
 		9C36418E14F41CA2005DE008 /* PullToCreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullToCreateViewController.m; sourceTree = "<group>"; };
 		9C3641B714F43947005DE008 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9C3641B814F43947005DE008 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		9CB3D2B214F45631006283F0 /* ARCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCHelper.h; sourceTree = "<group>"; };
 		9CB3D2B814F45631006283F0 /* Circle-Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circle-Arrow.png"; sourceTree = "<group>"; };
 		9CB3D2B914F45631006283F0 /* Circle-Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circle-Arrow@2x.png"; sourceTree = "<group>"; };
 		9CB3D2C314F45701006283F0 /* MOOPullGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOOPullGestureRecognizer.h; sourceTree = "<group>"; };
@@ -51,6 +50,9 @@
 		9CB3D2C614F45701006283F0 /* MOORefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MOORefreshView.m; sourceTree = "<group>"; };
 		9CB3D2CD14F45E9D006283F0 /* Arrow-Bucket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow-Bucket.png"; sourceTree = "<group>"; };
 		9CB3D2CE14F45E9D006283F0 /* Arrow-Bucket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow-Bucket@2x.png"; sourceTree = "<group>"; };
+		9CB3D2EF14F479EA006283F0 /* MOOTriggerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOTriggerView.h; sourceTree = "<group>"; };
+		9CB3D2F414F48A37006283F0 /* MOOPullGestureRecognizerSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOOPullGestureRecognizerSubclass.h; sourceTree = "<group>"; };
+		9CB3D2F514F48D8F006283F0 /* ARCHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARCHelper.h; path = Support/ARCHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,11 +167,13 @@
 		9CB3D2B114F45631006283F0 /* MOOPullGesture */ = {
 			isa = PBXGroup;
 			children = (
-				9CB3D2B214F45631006283F0 /* ARCHelper.h */,
 				9CB3D2C314F45701006283F0 /* MOOPullGestureRecognizer.h */,
+				9CB3D2F414F48A37006283F0 /* MOOPullGestureRecognizerSubclass.h */,
 				9CB3D2C414F45701006283F0 /* MOOPullGestureRecognizer.m */,
+				9CB3D2EF14F479EA006283F0 /* MOOTriggerView.h */,
 				9CB3D2C514F45701006283F0 /* MOORefreshView.h */,
 				9CB3D2C614F45701006283F0 /* MOORefreshView.m */,
+				9CB3D2ED14F4779F006283F0 /* Support */,
 				9CB3D2B714F45631006283F0 /* Resources */,
 			);
 			name = MOOPullGesture;
@@ -185,6 +189,14 @@
 				9CB3D2B914F45631006283F0 /* Circle-Arrow@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9CB3D2ED14F4779F006283F0 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9CB3D2F514F48D8F006283F0 /* ARCHelper.h */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

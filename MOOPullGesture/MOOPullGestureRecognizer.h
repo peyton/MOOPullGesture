@@ -8,34 +8,40 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ARCHelper.h"
+#import "Support/ARCHelper.h"
 
 typedef enum {
-    MOORefreshIdle = 0,
-    MOORefreshTriggered,
-    MOORefreshLoading
-} MOORefreshState;
+    MOOPullIdle = 0,
+    MOOPullActive,
+    MOOPullTriggered
+} MOOPullState;
 
-@protocol MOORefreshView;
+@protocol MOOTriggerView;
 
-@interface MOOPullGestureRecognizer : UIGestureRecognizer {
-    MOORefreshState _refreshState;
-    UIView<MOORefreshView> *_triggerView;
+@protocol MOOPullGestureRecognizer <NSObject>
+
+@property (nonatomic, assign) MOOPullState pullState;
+@property (nonatomic, strong, readonly) UIScrollView *scrollView;
+@property (nonatomic, strong) UIView<MOOTriggerView> *triggerView;
+
+@end
+@interface MOOPullGestureRecognizer : UIGestureRecognizer <MOOPullGestureRecognizer> {
+    UIView<MOOTriggerView> *_triggerView;
+    
+    BOOL _failed;
+    MOOPullState _pullState;
     
     struct {
         BOOL isBoundToScrollView:1;
-    } _triggerFlags;
+    } _pullGestureFlags;
 }
 
-@property (nonatomic, assign) MOORefreshState refreshState;
-@property (nonatomic, strong, readonly) UIScrollView *scrollView;
-
-@property (nonatomic, strong) UIView<MOORefreshView> *triggerView;
+@property (nonatomic, assign, getter = isFailed, readonly) BOOL failed;
 
 @end
 
 @interface UIScrollView (MOOPullGestureRecognizer)
 
-- (MOOPullGestureRecognizer *)refreshGestureRecognizer;
+@property (nonatomic, strong, readonly) UIGestureRecognizer<MOOPullGestureRecognizer> *pullGestureRecognizer;
 
 @end

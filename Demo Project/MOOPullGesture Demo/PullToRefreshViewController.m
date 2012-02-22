@@ -11,8 +11,8 @@
 
 @interface PullToRefreshViewController ()
 
-- (void)_stateChanged:(UIGestureRecognizer *)gestureRecognizer;
-- (void)_resetPullRecognizer:(MOOPullGestureRecognizer *)gestureRecognizer;
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
+- (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)gestureRecognizer;
 
 @end
 
@@ -39,7 +39,7 @@
     [super viewDidLoad];
 	
     // Add pull gesture recognizer
-    [self.tableView addGestureRecognizer:[[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(_stateChanged:)]];
+    [self.tableView addGestureRecognizer:[[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -49,17 +49,17 @@
 
 #pragma mark - MOOPullGestureRecognizer targets
 
-- (void)_stateChanged:(UIGestureRecognizer *)gestureRecognizer;
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
-        if ([gestureRecognizer isKindOfClass:[MOOPullGestureRecognizer class]])
+        if ([gestureRecognizer conformsToProtocol:@protocol(MOOPullGestureRecognizer)])
             [self performSelector:@selector(_resetPullRecognizer:) withObject:gestureRecognizer afterDelay:2.0];
     }
 }
 
-- (void)_resetPullRecognizer:(MOOPullGestureRecognizer *)gestureRecognizer;
+- (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 {
-    [gestureRecognizer setRefreshState:MOORefreshIdle];
+    pullGestureRecognizer.pullState = MOOPullIdle;
 }
 
 @end

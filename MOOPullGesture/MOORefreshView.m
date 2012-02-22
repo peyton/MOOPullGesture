@@ -8,7 +8,6 @@
 
 #import "MOORefreshView.h"
 
-
 // KVO key paths
 static NSString * const MOORefreshTriggerViewActivityViewKeyPath = @"activityView";
 static NSString * const MOORefreshTriggerViewArrowViewKeyPath = @"arrowView";
@@ -59,13 +58,14 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     
     // Initialize titleLabel
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.titleLabel.textAlignment = UITextAlignmentCenter;
     self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+    self.titleLabel.textAlignment = UITextAlignmentCenter;
     
     // Set defaults
-    self.loadingText = NSLocalizedStringFromTable(@"Loading\u2026", @"PHRefreshTriggerView", @"Loading table view contents");
-    self.pullToRefreshText = NSLocalizedStringFromTable(@"Pull to refresh\u2026", @"PHRefreshTriggerView", @"User may pull table view down to refresh");
-    self.releaseText = NSLocalizedStringFromTable(@"Release\u2026", @"PHRefreshTriggerView", @"User pulled table view down past threshold");
+    self.loadingText = NSLocalizedStringFromTable(@"Loading\u2026", @"MOOPullGesture", @"Loading table view contents");
+    self.pullToRefreshText = NSLocalizedStringFromTable(@"Pull to refresh\u2026", @"MOOPullGesture", @"User may pull table view down to refresh");
+    self.releaseText = NSLocalizedStringFromTable(@"Release to refresh\u2026", @"MOOPullGesture", @"User pulled table view down past threshold");
     
     self.arrowFadeAnimationDuration = 0.18;
     self.arrowSpinAnimationDuration = 0.18;
@@ -106,19 +106,19 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     [self.activityView sizeToFit];
     CGRect activityViewFrame = self.activityView.frame;
     activityViewFrame.origin = CGPointMake(30.0f - CGRectGetWidth(activityViewFrame) / 2.0f, (CGRectGetHeight(self.bounds) - CGRectGetHeight(activityViewFrame)) / 2.0f);
-    self.activityView.frame = activityViewFrame;
+    self.activityView.frame = CGRectIntegral(activityViewFrame);
     
     // Position arrowView
     [self.arrowView sizeToFit];
     CGRect arrowViewFrame = self.arrowView.frame;
     arrowViewFrame.origin = CGPointMake(30.0f - CGRectGetWidth(arrowViewFrame) / 2.0f, (CGRectGetHeight(self.bounds) - CGRectGetHeight(arrowViewFrame)) / 2.0f);
-    self.arrowView.frame = arrowViewFrame;
+    self.arrowView.frame = CGRectIntegral(arrowViewFrame);
         
     // Position titleLabel
     [self.titleLabel sizeToFit];
     CGRect titleLabelFrame = self.titleLabel.frame;
     titleLabelFrame.origin = CGPointMake((CGRectGetWidth(self.bounds) - CGRectGetWidth(titleLabelFrame)) / 2.0f, (CGRectGetHeight(self.bounds) - CGRectGetHeight(titleLabelFrame)) / 2.0f);
-    self.titleLabel.frame = titleLabelFrame;
+    self.titleLabel.frame = CGRectIntegral(titleLabelFrame);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size;
@@ -140,10 +140,10 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.frame = triggerViewFrame;
 }
 
-- (void)transitionToRefreshState:(MOORefreshState)state;
+- (void)transitionToPullState:(MOOPullState)pullState;
 {
-    switch (state) {
-        case MOORefreshTriggered:
+    switch (pullState) {
+        case MOOPullActive:
         {
             [UIView animateWithDuration:self.arrowSpinAnimationDuration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 self.arrowView.transform = CGAffineTransformMakeRotation(M_PI);
@@ -154,7 +154,7 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
             
             break;
         }
-        case MOORefreshIdle:
+        case MOOPullIdle:
         {
             void (^updateTitle)(void) = ^{
                 self.titleLabel.text = self.pullToRefreshText;
@@ -188,7 +188,7 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
             
             break;
         }
-        case MOORefreshLoading:
+        case MOOPullTriggered:
         {
             [UIView animateWithDuration:self.contentInsetAnimationDuration animations:^{
                 UIScrollView *scrollView = (UIScrollView *)self.superview;

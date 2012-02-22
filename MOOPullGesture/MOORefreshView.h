@@ -8,17 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ARCHelper.h"
+#import "Support/ARCHelper.h"
 #import "MOOPullGestureRecognizer.h"
+#import "MOOTriggerView.h"
 
-@protocol MOORefreshView
-
-- (void)positionInScrollView:(UIScrollView *)scrollView;
-- (void)transitionToRefreshState:(MOORefreshState)state;
-
-@end
-
-@interface MOORefreshView : UIView <MOORefreshView> 
+@interface MOORefreshView : UIView <MOOTriggerView> 
 {
     UIActivityIndicatorView *_activityView;
     UIImageView *_arrowView;

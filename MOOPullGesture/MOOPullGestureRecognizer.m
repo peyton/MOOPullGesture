@@ -7,80 +7,98 @@
 //
 
 #import "MOOPullGestureRecognizer.h"
+#import "MOOPullGestureRecognizerSubclass.h"
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
+#import "Support/ARCHelper.h"
 #import "MOORefreshView.h"
 
-static NSString * const MOORefreshViewKeyPath = @"view";
+static NSString * const MOOAttachedViewKeyPath = @"view";
 
 @implementation MOOPullGestureRecognizer
+@synthesize pullState = _pullState;
 @synthesize triggerView = _triggerView;
-@synthesize refreshState = _refreshState;
+
+@dynamic failed;
+@dynamic scrollView;
 
 - (id)initWithTarget:(id)target action:(SEL)action;
 {    
     if (!(self = [super initWithTarget:target action:action]))
         return nil;
     
+    // Configure KVO
+    [self addObserver:self forKeyPath:MOOAttachedViewKeyPath options:NSKeyValueObservingOptionNew context:NULL];
+    
     // Create trigger view
     self.triggerView = [[MOORefreshView alloc] initWithFrame:CGRectZero];
     
-    // Configure KVO
-    [self addObserver:self forKeyPath:MOORefreshViewKeyPath options:NSKeyValueObservingOptionNew context:NULL];
-        
     return self;
 }
 
 - (void)dealloc;
 {
-    [self removeObserver:self forKeyPath:MOORefreshViewKeyPath];
+    // Clean up KVO
+    [self removeObserver:self forKeyPath:MOOAttachedViewKeyPath];
+    
+    // Clean up memory
     self.triggerView = nil;
 }
 
-#pragma mark - Getters and setters
+#pragma mark - MOOPullGestureRecognizer methods
 
-- (void)setRefreshState:(MOORefreshState)refreshState;
+- (BOOL)shouldFail;
 {
-    if (refreshState == self.refreshState)
-        return;
-    
-    _refreshState = refreshState;
-    [self.triggerView transitionToRefreshState:refreshState];
-}
-
-- (UIScrollView *)scrollView;
-{
-    return (UIScrollView *)self.view;
-}
-
-- (void)setTriggerView:(UIView<MOORefreshView> *)triggerView;
-{
-    if (triggerView == self.triggerView)
-        return;
-    
-    [_triggerView removeFromSuperview];
-    _triggerView = triggerView;
-    [_triggerView transitionToRefreshState:self.refreshState];
-}
-
-#pragma mark - KVO methods
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
-{
-    id newValue = [change valueForKey:NSKeyValueChangeNewKey];
-    
-    if ([keyPath isEqualToString:MOORefreshViewKeyPath])
-        if ([newValue isKindOfClass:[UIScrollView class]])
-        {
-            _triggerFlags.isBoundToScrollView = YES;
-            [newValue addSubview:self.triggerView];
-            [self.triggerView positionInScrollView:newValue];
-        } else
-            _triggerFlags.isBoundToScrollView = NO;
-
+    return  self.pullState == MOOPullTriggered || 
+            self.state == UIGestureRecognizerStateFailed ||
+            !_pullGestureFlags.isBoundToScrollView;
 }
 
 #pragma mark - UIGestureRecognizer methods
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    [super touchesBegan:touches withEvent:event];
+    
+    if (self.failed = [self shouldFail])
+        return;
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    [super touchesMoved:touches withEvent:event];
+    
+    if (self.failed = [self shouldFail])
+        return;
+    
+    if (self.scrollView.contentOffset.y < CGRectGetMinY(self.triggerView.frame))
+        self.pullState = MOOPullActive;
+    else if (self.state != UIGestureRecognizerStateRecognized)
+        self.pullState = MOOPullIdle;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    [super touchesMoved:touches withEvent:event];
+    
+    if (self.failed = [self shouldFail])
+        return;
+    
+    if (self.pullState == MOOPullActive)
+    {
+        self.pullState = MOOPullTriggered;
+        self.state = UIGestureRecognizerStateRecognized;
+    } else {
+        self.pullState = MOOPullIdle;
+        self.state = UIGestureRecognizerStateFailed;
+    }
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    self.failed = YES;
+}
+
 - (BOOL)canPreventGestureRecognizer:(UIGestureRecognizer *)preventedGestureRecognizer;
 {
     return NO;
@@ -90,67 +108,74 @@ static NSString * const MOORefreshViewKeyPath = @"view";
     return NO;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+#pragma mark - Getters and setters
+
+- (BOOL)isFailed;
 {
-    if (self.refreshState == MOORefreshLoading || !_triggerFlags.isBoundToScrollView)
-    {
-        self.state = UIGestureRecognizerStateFailed;
-        return;
-    }
-    
-    [super touchesBegan:touches withEvent:event];
+    return self.state == UIGestureRecognizerStateFailed;
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)setFailed:(BOOL)failed;
 {
-    if (self.refreshState == MOORefreshLoading)
-    {
-        self.state = UIGestureRecognizerStateFailed;
+    if (failed == self.isFailed)
         return;
-    }
     
-    if (_triggerFlags.isBoundToScrollView)
-        if (self.scrollView.contentOffset.y < CGRectGetMinY(self.triggerView.frame))
-            self.refreshState = MOORefreshTriggered;
-        else if (self.state != UIGestureRecognizerStateRecognized)
-            self.refreshState = MOORefreshIdle;
+    if (failed)
+        self.state = UIGestureRecognizerStateFailed;
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)setPullState:(MOOPullState)pullState;
 {
-    if (self.refreshState == MOORefreshLoading)
-    {
-        self.state = UIGestureRecognizerStateFailed;
+    if (pullState == self.pullState)
         return;
-    }
     
-    if (_triggerFlags.isBoundToScrollView)
-        if (self.refreshState == MOORefreshTriggered)
+    _pullState = pullState;
+    [self.triggerView transitionToPullState:pullState];
+}
+
+- (UIScrollView *)scrollView;
+{
+    return (UIScrollView *)self.view;
+}
+
+- (void)setTriggerView:(UIView<MOOTriggerView> *)triggerView;
+{
+    if (triggerView == self.triggerView)
+        return;
+    
+    [self.triggerView removeFromSuperview];
+    _triggerView = triggerView;
+    [self.triggerView transitionToPullState:self.pullState];
+}
+
+#pragma mark - KVO methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
+{
+    id newValue = [change valueForKey:NSKeyValueChangeNewKey];
+    
+    if ([keyPath isEqualToString:MOOAttachedViewKeyPath])
+        if ([newValue isKindOfClass:[UIScrollView class]])
         {
-            self.refreshState = MOORefreshLoading;
-            self.state = UIGestureRecognizerStateRecognized;
+            _pullGestureFlags.isBoundToScrollView = YES;
+            [newValue addSubview:self.triggerView];
+            [self.triggerView positionInScrollView:newValue];
         } else {
-            self.refreshState = MOORefreshIdle;
-            self.state = UIGestureRecognizerStateFailed;
+            _pullGestureFlags.isBoundToScrollView = NO;
         }
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-    self.state = UIGestureRecognizerStateFailed;
 }
 
 @end
 
-#pragma mark - UIScrollView category
+#pragma mark - UIScrollView accessory
 
 @implementation UIScrollView (MOOPullGestureRecognizer)
 
-- (MOOPullGestureRecognizer *)refreshGestureRecognizer;
+- (UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 {
     for (UIGestureRecognizer *recognizer in self.gestureRecognizers)
-        if ([recognizer isKindOfClass:[MOOPullGestureRecognizer class]])
-            return (MOOPullGestureRecognizer *)recognizer;
+        if ([recognizer conformsToProtocol:@protocol(MOOPullGestureRecognizer)])
+            return (UIGestureRecognizer<MOOPullGestureRecognizer> *)recognizer;
     return nil;
 }
 
