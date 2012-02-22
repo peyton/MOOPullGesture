@@ -88,7 +88,7 @@
     CATransform3D transform = CATransform3DMakeRotation(angle, 1.0f, 0.0f, 0.0f);
     
     if (angle > 0.0f)
-        transform.m24 = -1.f / 1000.f;
+        transform.m24 = -1.f / 150.f + 1.f / 150.f * (M_PI_2 - angle) / M_PI_2;
     
     self.cell.layer.transform = transform;
     
