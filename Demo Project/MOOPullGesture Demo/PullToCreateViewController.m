@@ -7,16 +7,28 @@
 
 #import "PullToCreateViewController.h"
 
+#import "PullToCreateDataSource.h"
+#import "PullToCreateDelegate.h"
+
+#import "MOOPullGestureRecognizer.h"
+
 @interface PullToCreateViewController ()
+
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
+- (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 
 @end
 
 @implementation PullToCreateViewController
 
-- (id)initWithDataSource:(id<UITableViewDataSource>)dataSource delegate:(id<UITableViewDelegate>)delegate;
+- (id)initWithDataSource:(PullToCreateDataSource *)dataSource delegate:(PullToCreateDelegate *)delegate;
 {
     if (!(self = [super initWithStyle:UITableViewStylePlain]))
         return nil;
+    
+    // Retain data source and delegate
+    _dataSource = dataSource;
+    _delegate = delegate;
     
     // Configure tab bar
     self.title = NSLocalizedString(@"Pull to Create", @"Pull to Create");
@@ -32,7 +44,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    // Add pull gesture recognizer
+    MOOPullGestureRecognizer *recognizer = [[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    [self.tableView addGestureRecognizer:recognizer];
 }
 
 - (void)viewDidUnload
@@ -44,6 +59,21 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+#pragma mark - MOOPullGestureRecognizer targets
+
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
+        if ([gestureRecognizer conformsToProtocol:@protocol(MOOPullGestureRecognizer)])
+            [self _resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)gestureRecognizer];
+    }
+}
+
+- (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
+{
+    [pullGestureRecognizer resetPullState];
 }
 
 @end

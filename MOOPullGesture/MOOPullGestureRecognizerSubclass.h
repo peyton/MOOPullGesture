@@ -12,4 +12,6 @@
 
 @property (nonatomic, assign, getter = isFailed) BOOL failed;
 
+- (BOOL)shouldFail;
+
 @end

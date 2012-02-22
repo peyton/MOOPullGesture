@@ -7,8 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PullToRefreshViewController : UITableViewController
+@class PullToRefreshDataSource, PullToRefreshDelegate;
 
-- (id)initWithDataSource:(id<UITableViewDataSource>)dataSource delegate:(id<UITableViewDelegate>)delegate;
+@interface PullToRefreshViewController : UITableViewController
+{
+    PullToRefreshDataSource *_dataSource;
+    PullToRefreshDelegate *_delegate;
+}
+
+- (id)initWithDataSource:(PullToRefreshDataSource *)dataSource delegate:(PullToRefreshDelegate *)delegate;
 
 @end

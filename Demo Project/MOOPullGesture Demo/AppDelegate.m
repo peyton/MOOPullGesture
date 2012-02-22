@@ -8,8 +8,12 @@
 #import "AppDelegate.h"
 
 #import "PullToRefreshViewController.h"
+#import "PullToRefreshDataSource.h"
+#import "PullToRefreshDelegate.h"
 
 #import "PullToCreateViewController.h"
+#import "PullToCreateDataSource.h"
+#import "PullToCreateDelegate.h"
 
 @implementation AppDelegate
 
@@ -20,8 +24,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *pullToRefreshViewController = [[PullToRefreshViewController alloc] initWithDataSource:nil delegate:nil];
-    UIViewController *pullToCreateViewController = [[PullToCreateViewController alloc] initWithDataSource:nil delegate:nil];
+    UIViewController *pullToRefreshViewController = [[PullToRefreshViewController alloc] initWithDataSource:[[PullToRefreshDataSource alloc] init] delegate:[[PullToRefreshDelegate alloc] init]];
+    UIViewController *pullToCreateViewController = [[PullToCreateViewController alloc] initWithDataSource:[[PullToCreateDataSource alloc] init] delegate:[[PullToCreateDelegate alloc] init]];
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:pullToRefreshViewController, pullToCreateViewController, nil];
     self.window.rootViewController = self.tabBarController;

@@ -29,10 +29,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     
     // Configure KVO
     [self addObserver:self forKeyPath:MOOAttachedViewKeyPath options:NSKeyValueObservingOptionNew context:NULL];
-    
-    // Create trigger view
-    self.triggerView = [[MOORefreshView alloc] initWithFrame:CGRectZero];
-    
+        
     return self;
 }
 
@@ -46,6 +43,11 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 }
 
 #pragma mark - MOOPullGestureRecognizer methods
+
+- (void)resetPullState;
+{
+    self.pullState = MOOPullIdle;
+}
 
 - (BOOL)shouldFail;
 {
@@ -138,14 +140,22 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     return (UIScrollView *)self.view;
 }
 
+- (UIView<MOOTriggerView> *)triggerView;
+{
+    if (!_triggerView)
+        self.triggerView = [[MOORefreshView alloc] initWithFrame:CGRectZero];
+    
+    return _triggerView;
+}
+
 - (void)setTriggerView:(UIView<MOOTriggerView> *)triggerView;
 {
-    if (triggerView == self.triggerView)
+    if (triggerView == _triggerView)
         return;
     
-    [self.triggerView removeFromSuperview];
+    [_triggerView removeFromSuperview];
     _triggerView = triggerView;
-    [self.triggerView transitionToPullState:self.pullState];
+    [_triggerView transitionToPullState:self.pullState];
 }
 
 #pragma mark - KVO methods

@@ -9,6 +9,9 @@
 
 #import "MOOPullGestureRecognizer.h"
 
+#import "PullToRefreshDataSource.h"
+#import "PullToRefreshDelegate.h"
+
 @interface PullToRefreshViewController ()
 
 - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
@@ -18,10 +21,14 @@
 
 @implementation PullToRefreshViewController
 
-- (id)initWithDataSource:(id<UITableViewDataSource>)dataSource delegate:(id<UITableViewDelegate>)delegate;
+- (id)initWithDataSource:(PullToRefreshDataSource *)dataSource delegate:(PullToRefreshDelegate *)delegate;
 {
     if (!(self = [super initWithStyle:UITableViewStylePlain]))
         return nil;
+    
+    // Retain data source and delegate
+    _dataSource = dataSource;
+    _delegate = delegate;
     
     // Configure tab bar
     self.title = NSLocalizedString(@"Pull to Refresh", @"Pull to Refresh");
@@ -59,7 +66,11 @@
 
 - (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 {
-    pullGestureRecognizer.pullState = MOOPullIdle;
+    _dataSource.numberOfRows++;
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+    [self.tableView endUpdates];
+    [pullGestureRecognizer resetPullState];
 }
 
 @end

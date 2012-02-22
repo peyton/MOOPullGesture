@@ -24,6 +24,8 @@ typedef enum {
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView<MOOTriggerView> *triggerView;
 
+- (void)resetPullState;
+
 @end
 @interface MOOPullGestureRecognizer : UIGestureRecognizer <MOOPullGestureRecognizer> {
     UIView<MOOTriggerView> *_triggerView;

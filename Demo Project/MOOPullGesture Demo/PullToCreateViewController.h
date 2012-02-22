@@ -7,8 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PullToCreateViewController : UITableViewController
+@class PullToCreateDataSource, PullToCreateDelegate;
 
-- (id)initWithDataSource:(id<UITableViewDataSource>)dataSource delegate:(id<UITableViewDelegate>)delegate;
+@interface PullToCreateViewController : UITableViewController
+{
+    PullToCreateDataSource *_dataSource;
+    PullToCreateDelegate *_delegate;
+}
+
+- (id)initWithDataSource:(PullToCreateDataSource *)dataSource delegate:(PullToCreateDelegate *)delegate;
 
 @end
