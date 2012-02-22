@@ -86,9 +86,6 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
         self.pullState = MOOPullActive;
     else if (self.state != UIGestureRecognizerStateRecognized)
         self.pullState = MOOPullIdle;
-    
-    if (self.scrollView.contentOffset.y < 0.0f)
-        [self dispatchEvent:MOOEventContentOffsetChanged toTriggerView:self.triggerView withObject:[NSNumber numberWithFloat:self.scrollView.contentOffset.y]];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;

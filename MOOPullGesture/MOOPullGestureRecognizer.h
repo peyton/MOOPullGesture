@@ -16,6 +16,10 @@ typedef enum {
     MOOPullTriggered
 } MOOPullState;
 
+typedef enum {
+    MOOEventContentOffsetChanged = 1,
+} MOOEvent;
+
 @protocol MOOTriggerView;
 
 @protocol MOOPullGestureRecognizer <NSObject>
@@ -23,6 +27,7 @@ typedef enum {
 @property (nonatomic, assign) MOOPullState pullState;
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView<MOOTriggerView> *triggerView;
+- (void)dispatchEvent:(MOOEvent)event toTriggerView:(UIView<MOOTriggerView> *)triggerView withObject:(id)object;
 
 - (void)resetPullState;
 

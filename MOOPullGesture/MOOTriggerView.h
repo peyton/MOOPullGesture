@@ -9,10 +9,6 @@
 
 #import "MOOPullGestureRecognizer.h"
 
-typedef enum {
-    MOOEventContentOffsetChanged = 1,
-} MOOEvent;
-
 @protocol MOOTriggerView <NSObject>
 
 - (void)positionInScrollView:(UIScrollView *)scrollView;

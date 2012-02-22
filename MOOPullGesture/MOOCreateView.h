@@ -12,7 +12,7 @@
 #import "MOOPullGestureRecognizer.h"
 #import "MOOTriggerView.h"
 
-@class MOOCreateView;
+@class CATransformLayer, MOOCreateView;
 
 @protocol MOOCreateViewDelegate <NSObject>
 
@@ -28,6 +28,8 @@ typedef void (^MOOCreateViewConfiguration)(MOOCreateView *createView, UITableVie
     __unsafe_unretained id<MOOCreateViewDelegate> _delegate;
     MOOCreateViewConfiguration _configurationBlock;
     UITableViewCell *_cell;
+    
+    CATransformLayer *_transformLayer;
 }
 
 @property (nonatomic, unsafe_unretained) id<MOOCreateViewDelegate> delegate;

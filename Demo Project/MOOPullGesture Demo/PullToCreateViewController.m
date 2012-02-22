@@ -59,7 +59,6 @@
         if (![cell isKindOfClass:[UITableViewCell class]])
             return;
         
-        
         switch (state)
         {
             case MOOPullActive:
@@ -104,7 +103,6 @@
     contentOffset.y -= CGRectGetMinY(pullGestureRecognizer.triggerView.frame);
     [self.tableView reloadData];
     self.tableView.contentOffset = contentOffset;
-    [pullGestureRecognizer resetPullState];
 }
 
 @end

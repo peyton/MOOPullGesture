@@ -14,7 +14,6 @@
 
 @property (nonatomic, assign, getter = isFailed) BOOL failed;
 
-- (void)dispatchEvent:(MOOEvent)event toTriggerView:(UIView<MOOTriggerView> *)triggerView withObject:(id)object;
 - (BOOL)shouldFail;
 
 @end

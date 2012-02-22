@@ -16,4 +16,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+    if (scrollView.pullGestureRecognizer == nil)
+        return;
+    
+    if (scrollView.contentOffset.y >= 0.0f)
+        return;
+    
+    [scrollView.pullGestureRecognizer dispatchEvent:MOOEventContentOffsetChanged toTriggerView:scrollView.pullGestureRecognizer.triggerView withObject:[NSNumber numberWithFloat:scrollView.contentOffset.y]];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
+{
+    if (scrollView.pullGestureRecognizer)
+        [scrollView.pullGestureRecognizer resetPullState];
+}
+
 @end
