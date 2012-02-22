@@ -11,6 +11,7 @@
 #import "PullToCreateDelegate.h"
 
 #import "MOOPullGestureRecognizer.h"
+#import "MOOCreateView.h"
 
 @interface PullToCreateViewController ()
 
@@ -47,6 +48,7 @@
 	
     // Add pull gesture recognizer
     MOOPullGestureRecognizer *recognizer = [[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+    recognizer.triggerView = [[MOOCreateView alloc] initWithCellClass:[UITableViewCell class] style:UITableViewCellStyleDefault];
     [self.tableView addGestureRecognizer:recognizer];
 }
 

@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PullToCreateDelegate : NSObject <UITableViewDelegate>
+#import "MOOCreateView.h"
+
+@interface PullToCreateDelegate : NSObject <UITableViewDelegate, MOOCreateViewDelegate>
 
 @end

@@ -7,13 +7,13 @@
 
 #import "AppDelegate.h"
 
-#import "PullToRefreshViewController.h"
-#import "PullToRefreshDataSource.h"
-#import "PullToRefreshDelegate.h"
-
 #import "PullToCreateViewController.h"
 #import "PullToCreateDataSource.h"
 #import "PullToCreateDelegate.h"
+
+#import "PullToRefreshViewController.h"
+#import "PullToRefreshDataSource.h"
+#import "PullToRefreshDelegate.h"
 
 @implementation AppDelegate
 
@@ -24,10 +24,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *pullToRefreshViewController = [[PullToRefreshViewController alloc] initWithDataSource:[[PullToRefreshDataSource alloc] init] delegate:[[PullToRefreshDelegate alloc] init]];
     UIViewController *pullToCreateViewController = [[PullToCreateViewController alloc] initWithDataSource:[[PullToCreateDataSource alloc] init] delegate:[[PullToCreateDelegate alloc] init]];
+    UIViewController *pullToRefreshViewController = [[PullToRefreshViewController alloc] initWithDataSource:[[PullToRefreshDataSource alloc] init] delegate:[[PullToRefreshDelegate alloc] init]];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:pullToRefreshViewController, pullToCreateViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:pullToCreateViewController, pullToRefreshViewController, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;

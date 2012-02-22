@@ -11,6 +11,7 @@
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
 #import "Support/ARCHelper.h"
+#import "MOOTriggerView.h"
 #import "MOORefreshView.h"
 
 static NSString * const MOOAttachedViewKeyPath = @"view";
@@ -43,6 +44,14 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 }
 
 #pragma mark - MOOPullGestureRecognizer methods
+
+- (void)dispatchEvent:(MOOEvent)event toTriggerView:(UIView<MOOTriggerView> *)triggerView withObject:(id)object;
+{
+    if ([triggerView respondsToSelector:@selector(events)])
+        if (triggerView.events & event)
+            if ([triggerView respondsToSelector:@selector(handleEvent:withObject:)])
+                [triggerView handleEvent:event withObject:object];
+}
 
 - (void)resetPullState;
 {
@@ -77,6 +86,9 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
         self.pullState = MOOPullActive;
     else if (self.state != UIGestureRecognizerStateRecognized)
         self.pullState = MOOPullIdle;
+    
+    if (self.scrollView.contentOffset.y < 0.0f)
+        [self dispatchEvent:MOOEventContentOffsetChanged toTriggerView:self.triggerView withObject:[NSNumber numberWithFloat:self.scrollView.contentOffset.y]];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;

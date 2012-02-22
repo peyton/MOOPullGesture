@@ -36,7 +36,7 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
 @synthesize loading = _loading;
 @synthesize triggered = _triggered;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame;
 {
     if (!(self = [super initWithFrame:frame]))
         return nil;
@@ -77,7 +77,8 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     return self;
 }
 
-- (void)dealloc {
+- (void)dealloc;
+{
     self.activityView = nil;
     self.arrowView  = nil;
     self.titleLabel = nil;
@@ -126,7 +127,7 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     return CGSizeMake(size.width, 64.0f);
 }
 
-#pragma mark - PHRefreshTriggerView methods
+#pragma mark - MOOTriggerView methods
 
 - (void)positionInScrollView:(UIScrollView *)scrollView;
 {

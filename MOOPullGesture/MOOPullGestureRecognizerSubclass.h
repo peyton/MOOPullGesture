@@ -8,10 +8,13 @@
 
 #import "MOOPullGestureRecognizer.h"
 
+#import "MOOTriggerView.h"
+
 @interface MOOPullGestureRecognizer (ForSubclassEyesOnly)
 
 @property (nonatomic, assign, getter = isFailed) BOOL failed;
 
+- (void)dispatchEvent:(MOOEvent)event toTriggerView:(UIView<MOOTriggerView> *)triggerView withObject:(id)object;
 - (BOOL)shouldFail;
 
 @end
