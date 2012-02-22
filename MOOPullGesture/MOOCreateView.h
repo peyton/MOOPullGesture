@@ -32,8 +32,8 @@ typedef void (^MOOCreateViewConfiguration)(MOOCreateView *createView, UITableVie
 
 @property (nonatomic, unsafe_unretained) id<MOOCreateViewDelegate> delegate;
 @property (nonatomic, strong) MOOCreateViewConfiguration configurationBlock;
-@property (nonatomic, strong, readonly) UITableViewCell *cell;
+@property (nonatomic, strong) UITableViewCell *cell;
 
-- (id)initWithCellClass:(Class)cellClass style:(UITableViewCellStyle)style;
+- (id)initWithCell:(UITableViewCell *)cell;
 
 @end

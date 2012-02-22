@@ -82,7 +82,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     if (self.failed = [self shouldFail])
         return;
     
-    if (self.scrollView.contentOffset.y < CGRectGetMinY(self.triggerView.frame))
+    if (self.scrollView.contentOffset.y <= CGRectGetMinY(self.triggerView.frame))
         self.pullState = MOOPullActive;
     else if (self.state != UIGestureRecognizerStateRecognized)
         self.pullState = MOOPullIdle;

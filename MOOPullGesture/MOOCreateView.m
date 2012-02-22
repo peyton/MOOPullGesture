@@ -8,11 +8,7 @@
 
 #import "MOOCreateView.h"
 
-@interface MOOCreateView ()
-
-@property (nonatomic, strong) UITableViewCell *cell;
-
-@end
+#import <QuartzCore/QuartzCore.h>
 
 @implementation MOOCreateView
 @synthesize delegate = _delegate;
@@ -22,22 +18,27 @@
 
 - (id)init;
 {
-    if (!(self = [self initWithCellClass:[UITableViewCell class] style:UITableViewCellStyleDefault]))
+    if (!(self = [self initWithCell:[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]]))
         return nil;
+    
+    self.cell.backgroundColor = [UIColor whiteColor];
     
     return self;
 }
 
-- (id)initWithCellClass:(Class)cellClass style:(UITableViewCellStyle)style;
+- (id)initWithCell:(UITableViewCell *)cell;
 {
     if (!(self = [super initWithFrame:CGRectZero]))
         return nil;
     
     // Configure view
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor blackColor];
     
-    self.cell = [[cellClass alloc] initWithStyle:style reuseIdentifier:nil];
+    // Configure cell
+    self.cell = cell;
+    self.cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.cell.layer.shouldRasterize = YES;
     
     return self;
 }
@@ -57,12 +58,14 @@
 
 - (void)layoutSubviews;
 {
-
+    CGRect cellBounds = self.cell.layer.bounds;
+    cellBounds.size = self.bounds.size;
+    self.cell.layer.bounds = cellBounds;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size;
 {
-    return CGSizeMake(size.width, 44.0f);
+    return size;
 }
 
 #pragma mark - MOOTriggerView methods
@@ -77,13 +80,33 @@
     if (!(event & MOOEventContentOffsetChanged))
         return;
     
-    NSLog(@"Content offset changed!");
+    CGFloat contentOffsetY = [(NSNumber *)object floatValue];
+
+    CGFloat angle = acosf(-contentOffsetY / (CGRectGetHeight(self.cell.bounds)));
+    if (isnan(angle))
+        angle = 0.0f;
+    CATransform3D transform = CATransform3DMakeRotation(angle, 1.0f, 0.0f, 0.0f);
+    
+    if (angle > 0.0f)
+        transform.m24 = -1.f / 1000.f;
+    
+    self.cell.layer.transform = transform;
+    
+    self.cell.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, MAX(CGRectGetHeight(self.layer.bounds) + contentOffsetY / 2.0f, CGRectGetHeight(self.layer.bounds) / 2.0f));
+    
+    self.cell.layer.zPosition = -100.0f;
+    CGFloat opacity = MIN((-contentOffsetY / CGRectGetHeight(self.cell.layer.bounds)) * 0.7f + 0.3f, 1.0f);
+
+    self.cell.layer.opacity = opacity;
 }
 
 - (void)positionInScrollView:(UIScrollView *)scrollView;
 {
-    // Size trigger view
-    CGSize triggerViewSize = [self sizeThatFits:CGSizeMake(CGRectGetWidth(scrollView.bounds), HUGE_VALF)];
+    // Size create view
+    CGFloat height = ([scrollView isKindOfClass:[UITableView class]]) ? height = ((UITableView *)scrollView).rowHeight : 44.0f;
+    CGSize triggerViewSize = [self sizeThatFits:CGSizeMake(CGRectGetWidth(scrollView.bounds), height)];
+    
+    // Position create view
     CGPoint triggerViewOrigin = CGPointMake(0.0, -triggerViewSize.height);
     
     CGRect triggerViewFrame = CGRectZero;

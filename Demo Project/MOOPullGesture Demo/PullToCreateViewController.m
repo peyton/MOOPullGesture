@@ -41,19 +41,24 @@
     
     return self;
 }
-							
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
     // Add pull gesture recognizer
     MOOPullGestureRecognizer *recognizer = [[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
-    MOOCreateView *createView = [[MOOCreateView alloc] initWithCellClass:[UITableViewCell class] style:UITableViewCellStyleDefault];
+    
+    // Create cell
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    cell.backgroundColor = self.tableView.backgroundColor;
+    cell.imageView.image = [UIImage imageNamed:@"Arrow-Bucket.png"];
+    // Create create view
+    MOOCreateView *createView = [[MOOCreateView alloc] initWithCell:cell];
     createView.configurationBlock = ^(MOOCreateView *view, UITableViewCell *cell, MOOPullState state){
         if (![cell isKindOfClass:[UITableViewCell class]])
             return;
         
-        cell.backgroundColor = [UIColor whiteColor];
         
         switch (state)
         {
@@ -95,9 +100,10 @@
 - (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 {
     _dataSource.numberOfRows++;
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-    [self.tableView endUpdates];
+    CGPoint contentOffset = self.tableView.contentOffset;
+    contentOffset.y -= CGRectGetMinY(pullGestureRecognizer.triggerView.frame);
+    [self.tableView reloadData];
+    self.tableView.contentOffset = contentOffset;
     [pullGestureRecognizer resetPullState];
 }
 
