@@ -7,6 +7,8 @@
 
 #import "PullToCreateDataSource.h"
 
+#import "HipsterIpsumGenerator.h"
+
 @implementation PullToCreateDataSource
 @synthesize numberOfRows = _numberOfRows;
 
@@ -15,6 +17,7 @@
     if (!(self = [super init]))
         return nil;
     
+    _phrases = [NSMutableArray array];
     self.numberOfRows = 3;
     
     return self;
@@ -37,8 +40,22 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     
-	cell.textLabel.text = (self.numberOfRows - indexPath.row > 3) ? @"New cell!" : @"Cell";
+	cell.textLabel.text = [_phrases objectAtIndex:indexPath.row];
 	return cell;
+}
+
+#pragma mark - Getters and setters
+
+- (void)setNumberOfRows:(NSUInteger)numberOfRows;
+{
+    if (numberOfRows == self.numberOfRows)
+        return;
+    
+    NSInteger difference = numberOfRows - self.numberOfRows;
+    _numberOfRows = numberOfRows;
+    
+    for (NSUInteger i = 0; i < difference; i++)
+        [_phrases insertObject:[HipsterIpsumGenerator phraseOfLength:3] atIndex:0];
 }
 
 @end

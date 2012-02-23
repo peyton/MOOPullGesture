@@ -29,6 +29,7 @@
 		9CB3D30114F49B3E006283F0 /* PullToCreateDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB3D30014F49B3E006283F0 /* PullToCreateDelegate.m */; };
 		9CB3D30814F545DE006283F0 /* MOOCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB3D30714F544C1006283F0 /* MOOCreateView.m */; };
 		9CB3D31A14F59143006283F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB3D31914F59143006283F0 /* QuartzCore.framework */; };
+		9CB3D31D14F5BB6E006283F0 /* HipsterIpsumGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB3D31C14F5BB6E006283F0 /* HipsterIpsumGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,8 @@
 		9CB3D30614F544C1006283F0 /* MOOCreateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOOCreateView.h; sourceTree = "<group>"; };
 		9CB3D30714F544C1006283F0 /* MOOCreateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MOOCreateView.m; sourceTree = "<group>"; };
 		9CB3D31914F59143006283F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9CB3D31B14F5BB6E006283F0 /* HipsterIpsumGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HipsterIpsumGenerator.h; sourceTree = "<group>"; };
+		9CB3D31C14F5BB6E006283F0 /* HipsterIpsumGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HipsterIpsumGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,8 @@
 			children = (
 				9C36418314F41CA2005DE008 /* AppDelegate.h */,
 				9C36418414F41CA2005DE008 /* AppDelegate.m */,
+				9CB3D31B14F5BB6E006283F0 /* HipsterIpsumGenerator.h */,
+				9CB3D31C14F5BB6E006283F0 /* HipsterIpsumGenerator.m */,
 				9C3641A914F4345B005DE008 /* Pull to Create */,
 				9C3641A814F4344C005DE008 /* Pull to Refresh */,
 				9C36417B14F41CA2005DE008 /* Supporting Files */,
@@ -307,6 +312,7 @@
 				9CB3D2FB14F49B08006283F0 /* PullToRefreshDelegate.m in Sources */,
 				9CB3D2FE14F49B33006283F0 /* PullToCreateDataSource.m in Sources */,
 				9CB3D30114F49B3E006283F0 /* PullToCreateDelegate.m in Sources */,
+				9CB3D31D14F5BB6E006283F0 /* HipsterIpsumGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

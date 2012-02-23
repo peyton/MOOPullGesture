@@ -9,6 +9,7 @@
 
 @interface PullToRefreshDataSource : NSObject <UITableViewDataSource>
 {
+    NSMutableArray *_phrases;
     NSUInteger _numberOfRows;
 }
 

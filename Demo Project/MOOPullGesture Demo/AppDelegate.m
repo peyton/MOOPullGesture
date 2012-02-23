@@ -20,6 +20,11 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 
++ (void)initialize;
+{
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
