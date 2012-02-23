@@ -45,7 +45,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+
+    // Remove cell separators for aesthetic effect
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     // Add pull gesture recognizer
     MOOPullGestureRecognizer *recognizer = [[MOOPullGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     
@@ -73,12 +76,6 @@
     };
     recognizer.triggerView = createView;
     [self.tableView addGestureRecognizer:recognizer];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

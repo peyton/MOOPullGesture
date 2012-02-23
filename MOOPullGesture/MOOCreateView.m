@@ -47,6 +47,7 @@
     
     // Configure cell
     self.cell = cell;
+    self.cell.layer.anchorPoint = CGPointMake(0.5f, 1.0f);
     self.cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.cell.layer.shouldRasterize = YES;
     
@@ -90,25 +91,38 @@
     if (!(event & MOOEventContentOffsetChanged))
         return;
     
+    /*
+     * Layer folding effect
+     */
+    
+    // Grab content offset
     CGFloat contentOffsetY = [(NSNumber *)object floatValue];
     
+    // Calculate transition progress
     CGFloat progress = MIN(-contentOffsetY / CGRectGetHeight(self.cell.bounds), 1.0f);
 
+    //
     CGFloat angle = acosf(progress);
     if (isnan(angle))
         angle = 0.0f;
     CATransform3D transform = CATransform3DMakeRotation(angle, 1.0f, 0.0f, 0.0f);
-    transform = CATransform3DScale(transform, 1.0f, (CGRectGetHeight(self.cell.layer.bounds) + 6.0f * (1.f - progress)) / CGRectGetHeight(self.cell.layer.bounds), 1.0f);
+
+    // Perspective transform. Gradually decreases based on progress
     if (angle > 0.0f)
-        transform.m24 = -1.f / 150.f + 1.f / 150.f * (M_PI_2 - angle) / M_PI_2;
-    
+        transform.m24 = -1.f / 300.f + 1.f / 300.f * progress;
     self.cell.layer.transform = transform;
     
-    self.cell.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, MAX(CGRectGetHeight(self.layer.bounds) + contentOffsetY / 2.0f, CGRectGetHeight(self.layer.bounds) / 2.0f));
+    // Position at bottom of create view
+    CGFloat positionY = CGRectGetHeight(self.layer.bounds);
+    // 1px adjustment for table views with a 1px cell separator
+    if ([self.superview isKindOfClass:[UITableView class]])
+        if (((UITableView *)self.superview).separatorStyle == UITableViewCellSeparatorStyleSingleLine)
+            positionY -= 1.0f - progress;
     
-    CGFloat opacity = MIN(progress * 0.7f + 0.3f, 1.0f);
+    self.cell.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, positionY);
     
-    self.cell.layer.opacity = opacity;
+    // Set opacity to mimic shadows
+    self.cell.layer.opacity = MIN(progress * 0.7f + 0.3f, 1.0f);
 }
 
 - (void)positionInScrollView:(UIScrollView *)scrollView;
