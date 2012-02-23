@@ -16,7 +16,7 @@
 @interface PullToCreateViewController ()
 
 - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer;
-- (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
+- (void)_pulledToCreate:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 
 @end
 
@@ -46,7 +46,7 @@
 {
     [super viewDidLoad];
 
-    // Remove cell separators for aesthetic effect
+    // Remove cell separators for aesthetics effect
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Add pull gesture recognizer
@@ -54,8 +54,9 @@
     
     // Create cell
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.backgroundColor = self.tableView.backgroundColor;
+    cell.backgroundColor = self.tableView.backgroundColor; // UITableViewCell background color is transparent by default
     cell.imageView.image = [UIImage imageNamed:@"Arrow-Bucket.png"];
+    
     // Create create view
     MOOCreateView *createView = [[MOOCreateView alloc] initWithCell:cell];
     createView.configurationBlock = ^(MOOCreateView *view, UITableViewCell *cell, MOOPullState state){
@@ -89,11 +90,11 @@
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateRecognized) {
         if ([gestureRecognizer conformsToProtocol:@protocol(MOOPullGestureRecognizer)])
-            [self _resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)gestureRecognizer];
+            [self _pulledToCreate:(UIGestureRecognizer<MOOPullGestureRecognizer> *)gestureRecognizer];
     }
 }
 
-- (void)_resetPullRecognizer:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
+- (void)_pulledToCreate:(UIGestureRecognizer<MOOPullGestureRecognizer> *)pullGestureRecognizer;
 {
     _dataSource.numberOfRows++;
     CGPoint contentOffset = self.tableView.contentOffset;

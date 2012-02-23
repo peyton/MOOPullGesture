@@ -8,10 +8,12 @@
 #import "MOOCreateView.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "ARCHelper.h"
 
 @interface MOOCreateView ()
 
-@property (nonatomic, strong) CATransformLayer *transformLayer;
+@property (nonatomic, strong) MOOGradientView *gradientView;
+@property (nonatomic, strong) UIView *rotationView;
 
 // Notification handling
 - (void)handleContentOffsetChangedNotification:(NSNotification *)notification;
@@ -22,13 +24,16 @@
 @synthesize delegate = _delegate;
 @synthesize configurationBlock = _configurationBlock;
 @synthesize cell = _cell;
-@synthesize transformLayer = _transformLayer;
+
+@synthesize gradientView = _gradientView;
+@synthesize rotationView = _rotationView;
 
 - (id)init;
 {
     if (!(self = [self initWithCell:[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil]]))
         return nil;
     
+    // UITableViewCell has, by default, a transparent background. Set to white.
     self.cell.backgroundColor = [UIColor whiteColor];
     
     return self;
@@ -44,16 +49,19 @@
     self.backgroundColor = [UIColor blackColor];
     
     // Create transform layer
-    self.transformLayer = [CATransformLayer layer];
-    
+    self.rotationView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.rotationView.layer.anchorPoint = CGPointMake(0.5f, 1.0f);
+
     // Configure cell
     self.cell = cell;
-    self.cell.layer.anchorPoint = CGPointMake(0.5f, 1.0f);
-    self.cell.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.cell.layer.borderWidth = 1.0f;
-    self.cell.layer.edgeAntialiasingMask = kCALayerLeftEdge | kCALayerRightEdge;
-    self.cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    self.cell.layer.shouldRasterize = YES;
+    
+    // Create gradient view
+    self.gradientView = [[MOOGradientView alloc] initWithFrame:CGRectZero];
+    self.gradientView.layer.anchorPoint = CGPointZero;
+    
+    // Configure shadow gradient. If the effect is too strong, you can access the gradient view through the gradientView property and change the gradient colors and locations.
+    ((CAGradientLayer *)self.gradientView.layer).colors = [NSArray arrayWithObjects:(id)[UIColor colorWithWhite:0.0f alpha:0.4f].CGColor, (id)[UIColor colorWithWhite:0.0f alpha:0.8f].CGColor, nil];
+    ((CAGradientLayer *)self.gradientView.layer).locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.5f], [NSNumber numberWithFloat:1.0f], nil];
     
     // Register for notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentOffsetChangedNotification:) name:MOONotificationContentOffsetChanged object:nil];
@@ -76,9 +84,10 @@
 
 - (void)layoutSubviews;
 {
-    CGRect cellBounds = self.cell.layer.bounds;
-    cellBounds.size = self.bounds.size;
-    self.cell.layer.bounds = cellBounds;
+    // Expand cell, gradientView, and rotationView to fit createView
+    self.cell.layer.bounds = self.bounds;
+    self.gradientView.layer.bounds = self.bounds;
+    self.rotationView.layer.bounds = self.bounds;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size;
@@ -128,8 +137,6 @@
 
 - (void)handleContentOffsetChangedNotification:(NSNotification *)notification;
 {
-
-    
     /*
      * Layer folding effect
      */
@@ -138,7 +145,7 @@
     CGPoint contentOffet = [[notification.userInfo objectForKey:MOOKeyContentOffset] CGPointValue];
     
     // Calculate transition progress
-    CGFloat progress = MIN(-contentOffet.y / CGRectGetHeight(self.cell.bounds), 1.0f);
+    CGFloat progress = MIN(-contentOffet.y / CGRectGetHeight(self.rotationView.bounds), 1.0f);
     
     //
     CGFloat angle = acosf(progress);
@@ -149,7 +156,7 @@
     // Perspective transform. Gradually decreases based on progress
     if (angle > 0.0f)
         transform.m24 = -1.f / 300.f + 1.f / 300.f * progress;
-    self.cell.layer.transform = transform;
+    self.rotationView.layer.transform = transform;
     
     // Position at bottom of create view
     CGFloat positionY = CGRectGetHeight(self.layer.bounds);
@@ -158,10 +165,10 @@
         if (((UITableView *)self.superview).separatorStyle == UITableViewCellSeparatorStyleSingleLine)
             positionY -= 1.0f - progress;
     
-    self.cell.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, positionY);
+    self.rotationView.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, positionY);
     
     // Set opacity to mimic shadows
-    self.cell.layer.opacity = MIN(progress * 0.7f + 0.3f, 1.0f);
+    self.gradientView.layer.opacity = MAX(1.0f - progress, 0.0f);
 
 }
 
@@ -172,25 +179,59 @@
     if (cell == self.cell)
         return;
     
-    [self.cell.layer removeFromSuperlayer];
+    [self.cell removeFromSuperview];
     _cell = cell;
-    [self.transformLayer addSublayer:cell.layer];
+    
+    // Insert below gradientView if it exists
+    if ([self.rotationView.subviews containsObject:self.gradientView])
+        [self.rotationView insertSubview:cell belowSubview:self.gradientView];
+    else
+        [self.rotationView addSubview:cell];
     
     [self setNeedsLayout];
 }
 
-- (void)setTransformLayer:(CATransformLayer *)transformLayer;
+- (void)setGradientView:(MOOGradientView *)gradientView;
 {
-    if (transformLayer == self.transformLayer)
+    if (gradientView == self.gradientView)
         return;
     
-    for (CALayer *sublayer in self.transformLayer.sublayers)
+    [self.gradientView removeFromSuperview];
+    _gradientView = gradientView;
+    [self.rotationView addSubview:self.gradientView];
+    
+    [self setNeedsLayout];
+}
+
+- (void)setRotationView:(UIView *)rotationView;
+{
+    if (rotationView == self.rotationView)
+        return;
+    
+    // Moves rotationView subviews to new rotationView
+    for (UIView *subview in self.rotationView.subviews)
     {
-        [transformLayer addSublayer:sublayer];
+        [rotationView addSubview:subview];
     }
-    [self.transformLayer removeFromSuperlayer];
-    _transformLayer = transformLayer;
-    [self.layer addSublayer:transformLayer];
+    
+    // Swap rotationViews
+    [self.rotationView removeFromSuperview];
+    _rotationView = rotationView;
+    
+    // Configure new rotationView
+    [self addSubview:rotationView];
+    rotationView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [self setNeedsLayout];
+}
+
+@end
+
+@implementation MOOGradientView
+
++ (Class)layerClass;
+{
+    return [CAGradientLayer class];
 }
 
 @end
