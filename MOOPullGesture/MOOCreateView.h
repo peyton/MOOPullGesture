@@ -1,9 +1,8 @@
 //
-//  MOORefreshView.h
+//  MOOCreateView.h
 //  MOOPullGesture
 //
 //  Created by Peyton Randolph on 2/20/12
-//  Inspired by Pier-Olivier Thibault's [PHRefreshTriggerView](https://github.com/pothibo/PHRefreshTriggerView)
 //
 
 #import <UIKit/UIKit.h>

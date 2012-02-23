@@ -3,7 +3,6 @@
 //  MOOPullGesture
 //
 //  Created by Peyton Randolph
-//  Inspired by Pier-Olivier Thibault's [PHRefreshTriggerView](https://github.com/pothibo/PHRefreshTriggerView)
 //
 
 #import "MOOCreateView.h"
