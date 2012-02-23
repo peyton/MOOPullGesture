@@ -20,13 +20,8 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;
 {
-    if (scrollView.pullGestureRecognizer == nil)
-        return;
-    
-    if (scrollView.contentOffset.y >= 0.0f)
-        return;
-    
-    [scrollView.pullGestureRecognizer dispatchEvent:MOOEventContentOffsetChanged toTriggerView:scrollView.pullGestureRecognizer.triggerView withObject:[NSNumber numberWithFloat:scrollView.contentOffset.y]];
+    if (scrollView.pullGestureRecognizer)
+        [scrollView.pullGestureRecognizer scrollViewDidScroll:scrollView];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;

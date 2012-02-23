@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) CATransformLayer *transformLayer;
 
+// Notification handling
+- (void)handleContentOffsetChangedNotification:(NSNotification *)notification;
+
 @end
 
 @implementation MOOCreateView
@@ -21,7 +24,6 @@
 @synthesize configurationBlock = _configurationBlock;
 @synthesize cell = _cell;
 @synthesize transformLayer = _transformLayer;
-@dynamic events;
 
 - (id)init;
 {
@@ -48,8 +50,14 @@
     // Configure cell
     self.cell = cell;
     self.cell.layer.anchorPoint = CGPointMake(0.5f, 1.0f);
+    self.cell.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.cell.layer.borderWidth = 1.0f;
+    self.cell.layer.edgeAntialiasingMask = kCALayerLeftEdge | kCALayerRightEdge;
     self.cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.cell.layer.shouldRasterize = YES;
+    
+    // Register for notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentOffsetChangedNotification:) name:MOONotificationContentOffsetChanged object:nil];
     
     return self;
 }
@@ -80,50 +88,6 @@
 }
 
 #pragma mark - MOOTriggerView methods
-
-- (NSUInteger)events;
-{
-    return MOOEventContentOffsetChanged;
-}
-
-- (void)handleEvent:(MOOEvent)event withObject:(id)object;
-{
-    if (!(event & MOOEventContentOffsetChanged))
-        return;
-    
-    /*
-     * Layer folding effect
-     */
-    
-    // Grab content offset
-    CGFloat contentOffsetY = [(NSNumber *)object floatValue];
-    
-    // Calculate transition progress
-    CGFloat progress = MIN(-contentOffsetY / CGRectGetHeight(self.cell.bounds), 1.0f);
-
-    //
-    CGFloat angle = acosf(progress);
-    if (isnan(angle))
-        angle = 0.0f;
-    CATransform3D transform = CATransform3DMakeRotation(angle, 1.0f, 0.0f, 0.0f);
-
-    // Perspective transform. Gradually decreases based on progress
-    if (angle > 0.0f)
-        transform.m24 = -1.f / 300.f + 1.f / 300.f * progress;
-    self.cell.layer.transform = transform;
-    
-    // Position at bottom of create view
-    CGFloat positionY = CGRectGetHeight(self.layer.bounds);
-    // 1px adjustment for table views with a 1px cell separator
-    if ([self.superview isKindOfClass:[UITableView class]])
-        if (((UITableView *)self.superview).separatorStyle == UITableViewCellSeparatorStyleSingleLine)
-            positionY -= 1.0f - progress;
-    
-    self.cell.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, positionY);
-    
-    // Set opacity to mimic shadows
-    self.cell.layer.opacity = MIN(progress * 0.7f + 0.3f, 1.0f);
-}
 
 - (void)positionInScrollView:(UIScrollView *)scrollView;
 {
@@ -159,6 +123,47 @@
         default:
             break;
     }
+}
+
+#pragma mark - Notification handling
+
+- (void)handleContentOffsetChangedNotification:(NSNotification *)notification;
+{
+
+    
+    /*
+     * Layer folding effect
+     */
+    
+    // Grab content offset
+    CGPoint contentOffet = [[notification.userInfo objectForKey:MOOKeyContentOffset] CGPointValue];
+    
+    // Calculate transition progress
+    CGFloat progress = MIN(-contentOffet.y / CGRectGetHeight(self.cell.bounds), 1.0f);
+    
+    //
+    CGFloat angle = acosf(progress);
+    if (isnan(angle))
+        angle = 0.0f;
+    CATransform3D transform = CATransform3DMakeRotation(angle, 1.0f, 0.0f, 0.0f);
+    
+    // Perspective transform. Gradually decreases based on progress
+    if (angle > 0.0f)
+        transform.m24 = -1.f / 300.f + 1.f / 300.f * progress;
+    self.cell.layer.transform = transform;
+    
+    // Position at bottom of create view
+    CGFloat positionY = CGRectGetHeight(self.layer.bounds);
+    // 1px adjustment for table views with a 1px cell separator
+    if ([self.superview isKindOfClass:[UITableView class]])
+        if (((UITableView *)self.superview).separatorStyle == UITableViewCellSeparatorStyleSingleLine)
+            positionY -= 1.0f - progress;
+    
+    self.cell.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, positionY);
+    
+    // Set opacity to mimic shadows
+    self.cell.layer.opacity = MIN(progress * 0.7f + 0.3f, 1.0f);
+
 }
 
 #pragma mark - Getters and setters

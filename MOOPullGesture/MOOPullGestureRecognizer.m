@@ -45,14 +45,6 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 
 #pragma mark - MOOPullGestureRecognizer methods
 
-- (void)dispatchEvent:(MOOEvent)event toTriggerView:(UIView<MOOTriggerView> *)triggerView withObject:(id)object;
-{
-    if ([triggerView respondsToSelector:@selector(events)])
-        if (triggerView.events & event)
-            if ([triggerView respondsToSelector:@selector(handleEvent:withObject:)])
-                [triggerView handleEvent:event withObject:object];
-}
-
 - (void)resetPullState;
 {
     self.pullState = MOOPullIdle;
@@ -117,6 +109,19 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 - (BOOL)canBePreventedByGestureRecognizer:(UIGestureRecognizer *)preventingGestureRecognizer;
 {
     return NO;
+}
+
+#pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+    if (scrollView != self.view)
+        return;
+    
+    if (scrollView.contentOffset.y >= 0.0f)
+        return;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:MOONotificationContentOffsetChanged object:self userInfo:[NSDictionary dictionaryWithObject:[NSValue valueWithCGPoint:scrollView.contentOffset] forKey:MOOKeyContentOffset]];
 }
 
 #pragma mark - Getters and setters

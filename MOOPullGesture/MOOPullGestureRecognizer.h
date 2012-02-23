@@ -10,24 +10,26 @@
 
 #import "Support/ARCHelper.h"
 
+// States
 typedef enum {
-    MOOPullIdle = 0,
-    MOOPullActive,
-    MOOPullTriggered
+    MOOPullIdle = 0, // Threshold not reached, e.g. "Pull to refresh..."
+    MOOPullActive, // Threshold reached, e.g. "Release to refresh..."
+    MOOPullTriggered // Gesture ended past threshold, e.g. "Loading..."
 } MOOPullState;
 
-typedef enum {
-    MOOEventContentOffsetChanged = 1,
-} MOOEvent;
+// Notifications
+static NSString * const MOONotificationContentOffsetChanged = @"MOONotificationContentOffsetChanged";
+
+// Keys
+static NSString * const MOOKeyContentOffset = @"MOOKeyContentOffset";
 
 @protocol MOOTriggerView;
 
-@protocol MOOPullGestureRecognizer <NSObject>
+@protocol MOOPullGestureRecognizer <UIScrollViewDelegate>
 
 @property (nonatomic, assign) MOOPullState pullState;
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView<MOOTriggerView> *triggerView;
-- (void)dispatchEvent:(MOOEvent)event toTriggerView:(UIView<MOOTriggerView> *)triggerView withObject:(id)object;
 
 - (void)resetPullState;
 

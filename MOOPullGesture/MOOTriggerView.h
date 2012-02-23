@@ -14,9 +14,4 @@
 - (void)positionInScrollView:(UIScrollView *)scrollView;
 - (void)transitionToPullState:(MOOPullState)pullState;
 
-@optional
-
-@property (nonatomic, assign, readonly) NSUInteger events;
-- (void)handleEvent:(MOOEvent)event withObject:(id)object;
-
 @end
