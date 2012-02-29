@@ -36,6 +36,9 @@
     // UITableViewCell has, by default, a transparent background. Set to white.
     self.cell.backgroundColor = [UIColor whiteColor];
     
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.layer.shouldRasterize = YES;
+    
     return self;
 }
 
@@ -47,10 +50,16 @@
     // Configure view
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.backgroundColor = [UIColor blackColor];
+    self.clipsToBounds = YES;
     
     // Create transform layer
     self.rotationView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.rotationView.layer.anchorPoint = CGPointMake(0.5f, 1.0f);
+    
+    // Allow antialiasing
+    self.rotationView.layer.borderColor = self.backgroundColor.CGColor;
+    self.rotationView.layer.borderWidth = 3.0f;
+    self.rotationView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    self.rotationView.layer.shouldRasterize = YES;
 
     // Configure cell
     self.cell = cell;
@@ -78,6 +87,12 @@
 - (void)dealloc;
 {
     self.delegate = nil;
+    self.cell = nil;
+    self.configurationBlock = nil;
+    self.gradientView = nil;
+    self.rotationView = nil;
+    
+    AH_SUPER_DEALLOC;
 }
 
 #pragma mark - Subview methods
@@ -87,7 +102,17 @@
     // Expand cell, gradientView, and rotationView to fit createView
     self.cell.layer.bounds = self.bounds;
     self.gradientView.layer.bounds = self.bounds;
-    self.rotationView.layer.bounds = self.bounds;
+    self.rotationView.layer.bounds = CGRectInset(self.bounds, -self.rotationView.layer.borderWidth, -self.rotationView.layer.borderWidth);
+
+    // Set rotation view anchorPoint to the max Y, accounting for border width
+    self.rotationView.layer.anchorPoint = CGPointMake(0.5f, 1.0f - self.rotationView.layer.borderWidth / CGRectGetHeight(self.rotationView.layer.bounds));
+    
+    // Position cell in the center of rotation view
+    CGPoint rotationCenter = CGPointMake(CGRectGetMidX(self.rotationView.layer.bounds), CGRectGetMidY(self.rotationView.layer.bounds));
+    self.cell.layer.position = rotationCenter;
+    
+    // Position gradientView in the top left
+    self.gradientView.layer.position = CGPointZero;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size;
@@ -145,7 +170,7 @@
     CGPoint contentOffet = [[notification.userInfo objectForKey:MOOKeyContentOffset] CGPointValue];
     
     // Calculate transition progress
-    CGFloat progress = MIN(-contentOffet.y / CGRectGetHeight(self.rotationView.bounds), 1.0f);
+    CGFloat progress = MIN(-contentOffet.y / CGRectGetHeight(self.bounds), 1.0f);
     
     //
     CGFloat angle = acosf(progress);
@@ -165,7 +190,7 @@
         if (((UITableView *)self.superview).separatorStyle == UITableViewCellSeparatorStyleSingleLine)
             positionY -= 1.0f - progress;
     
-    self.rotationView.layer.position = CGPointMake(CGRectGetWidth(self.layer.bounds) / 2.0f, positionY);
+    self.rotationView.layer.position = CGPointMake(CGRectGetMidX(self.layer.bounds), positionY);
     
     // Set opacity to mimic shadows
     self.gradientView.layer.opacity = MAX(1.0f - progress, 0.0f);

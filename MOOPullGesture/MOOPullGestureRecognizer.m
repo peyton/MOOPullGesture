@@ -41,6 +41,8 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     
     // Clean up memory
     self.triggerView = nil;
+    
+    AH_SUPER_DEALLOC;
 }
 
 #pragma mark - MOOPullGestureRecognizer methods
