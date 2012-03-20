@@ -84,7 +84,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-    [super touchesMoved:touches withEvent:event];
+    [super touchesEnded:touches withEvent:event];
     
     if (self.failed = [self shouldFail])
         return;
