@@ -24,7 +24,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 @dynamic scrollView;
 
 - (id)initWithTarget:(id)target action:(SEL)action;
-{    
+{
     if (!(self = [super initWithTarget:target action:action]))
         return nil;
     

@@ -7,6 +7,8 @@
 
 #import "PullToCreateDelegate.h"
 
+#import "MOOPullGestureRecognizer.h"
+
 @implementation PullToCreateDelegate
 
 #pragma mark - UITableViewDelegate methods

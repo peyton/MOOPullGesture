@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 
 #import "Support/ARCHelper.h"
-#import "MOOPullGestureRecognizer.h"
 #import "MOOTriggerView.h"
 
 @class CATransformLayer, MOOCreateView;
