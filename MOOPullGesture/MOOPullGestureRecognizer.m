@@ -29,7 +29,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
         return nil;
     
     // Configure KVO
-    [self addObserver:self forKeyPath:MOOAttachedViewKeyPath options:NSKeyValueObservingOptionNew context:NULL];
+    [self addObserver:self forKeyPath:MOOAttachedViewKeyPath options:NSKeyValueObservingOptionNew context:(__bridge void *)MOOAttachedViewKeyPath];
         
     return self;
 }
@@ -169,8 +169,13 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     if (triggerView == _triggerView)
         return;
     
+    // Remove trigger view from its previous view
     [_triggerView removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] removeObserver:_triggerView name:MOONotificationContentOffsetChanged object:nil];
+    
+    // Configure new trigger view
     _triggerView = triggerView;
+    [_triggerView positionInScrollView:self.scrollView];
     [_triggerView transitionToPullState:self.pullState];
 }
 
@@ -180,7 +185,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 {
     id newValue = [change valueForKey:NSKeyValueChangeNewKey];
     
-    if ([keyPath isEqualToString:MOOAttachedViewKeyPath])
+    if (context == (__bridge void *)MOOAttachedViewKeyPath)
         if ([newValue isKindOfClass:[UIScrollView class]])
         {
             _pullGestureFlags.isBoundToScrollView = YES;

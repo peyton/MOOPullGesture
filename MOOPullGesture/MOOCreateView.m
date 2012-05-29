@@ -71,10 +71,7 @@
     // Configure shadow gradient. If the effect is too strong, you can access the gradient view through the gradientView property and change the gradient colors and locations.
     ((CAGradientLayer *)self.gradientView.layer).colors = [NSArray arrayWithObjects:(id)[UIColor colorWithWhite:0.0f alpha:0.4f].CGColor, (id)[UIColor colorWithWhite:0.0f alpha:0.8f].CGColor, nil];
     ((CAGradientLayer *)self.gradientView.layer).locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.5f], [NSNumber numberWithFloat:1.0f], nil];
-    
-    // Register for notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentOffsetChangedNotification:) name:MOONotificationContentOffsetChanged object:nil];
-    
+
     return self;
 }
 
@@ -86,6 +83,9 @@
 
 - (void)dealloc;
 {
+    // Deregister for previous content offset change notification
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MOONotificationContentOffsetChanged object:nil];
+    
     self.delegate = nil;
     self.cell = nil;
     self.configurationBlock = nil;
@@ -124,6 +124,12 @@
 
 - (void)positionInScrollView:(UIScrollView *)scrollView;
 {
+    // Deregister for previous content offset change notification
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MOONotificationContentOffsetChanged object:nil];
+    
+    // Register for content offset change notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleContentOffsetChangedNotification:) name:MOONotificationContentOffsetChanged object:scrollView.pullGestureRecognizer];
+    
     // Size create view
     CGFloat height = ([scrollView isKindOfClass:[UITableView class]]) ? height = ((UITableView *)scrollView).rowHeight : 44.0f;
     CGSize triggerViewSize = [self sizeThatFits:CGSizeMake(CGRectGetWidth(scrollView.bounds), height)];
@@ -167,10 +173,10 @@
      */
     
     // Grab content offset
-    CGPoint contentOffet = [[notification.userInfo objectForKey:MOOKeyContentOffset] CGPointValue];
+    CGPoint contentOffset = [[notification.userInfo objectForKey:MOOKeyContentOffset] CGPointValue];
     
     // Calculate transition progress
-    CGFloat progress = MIN(-contentOffet.y / CGRectGetHeight(self.bounds), 1.0f);
+    CGFloat progress = MIN(-contentOffset.y / CGRectGetHeight(self.bounds), 1.0f);
     
     //
     CGFloat angle = acosf(progress);
@@ -194,7 +200,6 @@
     
     // Set opacity to mimic shadows
     self.gradientView.layer.opacity = MAX(1.0f - progress, 0.0f);
-
 }
 
 #pragma mark - Getters and setters

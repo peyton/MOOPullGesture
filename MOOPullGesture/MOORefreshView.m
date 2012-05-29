@@ -45,9 +45,9 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     // Initialize KVO
-    [self addObserver:self forKeyPath:MOORefreshTriggerViewActivityViewKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
-    [self addObserver:self forKeyPath:MOORefreshTriggerViewArrowViewKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
-    [self addObserver:self forKeyPath:MOORefreshTriggerViewTitleLabelKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+    [self addObserver:self forKeyPath:MOORefreshTriggerViewActivityViewKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:(__bridge void *)MOORefreshTriggerViewActivityViewKeyPath];
+    [self addObserver:self forKeyPath:MOORefreshTriggerViewArrowViewKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:(__bridge void *)MOORefreshTriggerViewArrowViewKeyPath];
+    [self addObserver:self forKeyPath:MOORefreshTriggerViewTitleLabelKeyPath options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:(__bridge void *)MOORefreshTriggerViewTitleLabelKeyPath];
     
     // Initialize activityView
     self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -222,9 +222,7 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     id newObject = [change objectForKey:NSKeyValueChangeNewKey];
     
     // Swap subviews
-    if ([keyPath isEqualToString:MOORefreshTriggerViewActivityViewKeyPath] ||
-        [keyPath isEqualToString:MOORefreshTriggerViewArrowViewKeyPath] ||
-        [keyPath isEqualToString:MOORefreshTriggerViewTitleLabelKeyPath])
+    if (context == (__bridge void *)MOORefreshTriggerViewActivityViewKeyPath || context == (__bridge void *)MOORefreshTriggerViewArrowViewKeyPath || context == (__bridge void *)MOORefreshTriggerViewTitleLabelKeyPath)
     {
         if (oldObject != [NSNull null])
             [(UIView *)oldObject removeFromSuperview];

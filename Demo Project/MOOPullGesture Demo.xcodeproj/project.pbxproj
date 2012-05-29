@@ -30,6 +30,12 @@
 		9CB3D30814F545DE006283F0 /* MOOCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB3D30714F544C1006283F0 /* MOOCreateView.m */; };
 		9CB3D31A14F59143006283F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB3D31914F59143006283F0 /* QuartzCore.framework */; };
 		9CB3D31D14F5BB6E006283F0 /* HipsterIpsumGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB3D31C14F5BB6E006283F0 /* HipsterIpsumGenerator.m */; };
+		9CF65D5F15757E0600DE73D6 /* CustomTriggerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF65D5E15757E0600DE73D6 /* CustomTriggerViewController.m */; };
+		9CF65D6315757E8600DE73D6 /* CustomTriggerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF65D6215757E8600DE73D6 /* CustomTriggerDataSource.m */; };
+		9CF65D6615757E9500DE73D6 /* CustomTriggerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF65D6515757E9500DE73D6 /* CustomTriggerDelegate.m */; };
+		9CF65D691575805C00DE73D6 /* Square.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF65D671575805C00DE73D6 /* Square.png */; };
+		9CF65D6A1575805C00DE73D6 /* Square@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CF65D681575805C00DE73D6 /* Square@2x.png */; };
+		9CF65D6D1575807B00DE73D6 /* CustomTriggerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CF65D6C1575807B00DE73D6 /* CustomTriggerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +79,16 @@
 		9CB3D31914F59143006283F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9CB3D31B14F5BB6E006283F0 /* HipsterIpsumGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HipsterIpsumGenerator.h; sourceTree = "<group>"; };
 		9CB3D31C14F5BB6E006283F0 /* HipsterIpsumGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HipsterIpsumGenerator.m; sourceTree = "<group>"; };
+		9CF65D5D15757E0600DE73D6 /* CustomTriggerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTriggerViewController.h; sourceTree = "<group>"; };
+		9CF65D5E15757E0600DE73D6 /* CustomTriggerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTriggerViewController.m; sourceTree = "<group>"; };
+		9CF65D6115757E8600DE73D6 /* CustomTriggerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTriggerDataSource.h; sourceTree = "<group>"; };
+		9CF65D6215757E8600DE73D6 /* CustomTriggerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTriggerDataSource.m; sourceTree = "<group>"; };
+		9CF65D6415757E9500DE73D6 /* CustomTriggerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTriggerDelegate.h; sourceTree = "<group>"; };
+		9CF65D6515757E9500DE73D6 /* CustomTriggerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTriggerDelegate.m; sourceTree = "<group>"; };
+		9CF65D671575805C00DE73D6 /* Square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Square.png; sourceTree = "<group>"; };
+		9CF65D681575805C00DE73D6 /* Square@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Square@2x.png"; sourceTree = "<group>"; };
+		9CF65D6B1575807A00DE73D6 /* CustomTriggerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTriggerView.h; sourceTree = "<group>"; };
+		9CF65D6C1575807B00DE73D6 /* CustomTriggerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTriggerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +144,7 @@
 				9CB3D31C14F5BB6E006283F0 /* HipsterIpsumGenerator.m */,
 				9C3641A914F4345B005DE008 /* Pull to Create */,
 				9C3641A814F4344C005DE008 /* Pull to Refresh */,
+				9CF65D5B15757DEA00DE73D6 /* Custom Trigger */,
 				9C36417B14F41CA2005DE008 /* Supporting Files */,
 			);
 			path = "MOOPullGesture Demo";
@@ -140,6 +157,8 @@
 				9C36417D14F41CA2005DE008 /* InfoPlist.strings */,
 				9C3641B714F43947005DE008 /* Icon.png */,
 				9C3641B814F43947005DE008 /* Icon@2x.png */,
+				9CF65D671575805C00DE73D6 /* Square.png */,
+				9CF65D681575805C00DE73D6 /* Square@2x.png */,
 				9C36418014F41CA2005DE008 /* main.m */,
 				9C36418214F41CA2005DE008 /* MOOPullGesture Demo-Prefix.pch */,
 			);
@@ -233,6 +252,29 @@
 			name = Support;
 			sourceTree = "<group>";
 		};
+		9CF65D5B15757DEA00DE73D6 /* Custom Trigger */ = {
+			isa = PBXGroup;
+			children = (
+				9CF65D6015757E6800DE73D6 /* Support */,
+				9CF65D5D15757E0600DE73D6 /* CustomTriggerViewController.h */,
+				9CF65D5E15757E0600DE73D6 /* CustomTriggerViewController.m */,
+				9CF65D6B1575807A00DE73D6 /* CustomTriggerView.h */,
+				9CF65D6C1575807B00DE73D6 /* CustomTriggerView.m */,
+			);
+			name = "Custom Trigger";
+			sourceTree = "<group>";
+		};
+		9CF65D6015757E6800DE73D6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9CF65D6115757E8600DE73D6 /* CustomTriggerDataSource.h */,
+				9CF65D6215757E8600DE73D6 /* CustomTriggerDataSource.m */,
+				9CF65D6415757E9500DE73D6 /* CustomTriggerDelegate.h */,
+				9CF65D6515757E9500DE73D6 /* CustomTriggerDelegate.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -291,6 +333,8 @@
 				9CB3D2BD14F45631006283F0 /* Circle-Arrow@2x.png in Resources */,
 				9CB3D2CF14F45E9D006283F0 /* Arrow-Bucket.png in Resources */,
 				9CB3D2D014F45E9D006283F0 /* Arrow-Bucket@2x.png in Resources */,
+				9CF65D691575805C00DE73D6 /* Square.png in Resources */,
+				9CF65D6A1575805C00DE73D6 /* Square@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +357,10 @@
 				9CB3D2FE14F49B33006283F0 /* PullToCreateDataSource.m in Sources */,
 				9CB3D30114F49B3E006283F0 /* PullToCreateDelegate.m in Sources */,
 				9CB3D31D14F5BB6E006283F0 /* HipsterIpsumGenerator.m in Sources */,
+				9CF65D5F15757E0600DE73D6 /* CustomTriggerViewController.m in Sources */,
+				9CF65D6315757E8600DE73D6 /* CustomTriggerDataSource.m in Sources */,
+				9CF65D6615757E9500DE73D6 /* CustomTriggerDelegate.m in Sources */,
+				9CF65D6D1575807B00DE73D6 /* CustomTriggerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

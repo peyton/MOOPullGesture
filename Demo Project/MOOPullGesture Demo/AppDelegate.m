@@ -15,6 +15,10 @@
 #import "PullToRefreshDataSource.h"
 #import "PullToRefreshDelegate.h"
 
+#import "CustomTriggerDataSource.h"
+#import "CustomTriggerDelegate.h"
+#import "CustomTriggerViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -31,8 +35,9 @@
     // Override point for customization after application launch.
     UIViewController *pullToCreateViewController = [[PullToCreateViewController alloc] initWithDataSource:[[PullToCreateDataSource alloc] init] delegate:[[PullToCreateDelegate alloc] init]];
     UIViewController *pullToRefreshViewController = [[PullToRefreshViewController alloc] initWithDataSource:[[PullToRefreshDataSource alloc] init] delegate:[[PullToRefreshDelegate alloc] init]];
+    UIViewController *customTriggerViewController = [[CustomTriggerViewController alloc] initWithDataSource:[[CustomTriggerDataSource alloc] init] delegate:[[CustomTriggerDelegate alloc] init]];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:pullToCreateViewController, pullToRefreshViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:pullToCreateViewController, pullToRefreshViewController, customTriggerViewController, nil];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
