@@ -1,0 +1,11 @@
+/* 
+  MOOPullGesture.strings
+  BabyGrow
+
+  Created by The Molloys on 10/17/12.
+
+*/
+
+"Loading..." = "Загрузка…";
+"Pull to refresh..." = "Потяните вниз, чтобы обновить…";
+"Release to refresh..." = "Отпустите, чтобы обновить…";

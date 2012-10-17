@@ -63,9 +63,9 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.titleLabel.textAlignment = UITextAlignmentCenter;
     
     // Set defaults
-    self.loadingText = NSLocalizedStringFromTable(@"Loading\u2026", @"MOOPullGesture", @"Loading table view contents");
-    self.pullToRefreshText = NSLocalizedStringFromTable(@"Pull to refresh\u2026", @"MOOPullGesture", @"User may pull table view down to refresh");
-    self.releaseText = NSLocalizedStringFromTable(@"Release to refresh\u2026", @"MOOPullGesture", @"User pulled table view down past threshold");
+    self.loadingText = NSLocalizedStringFromTable(@"Loading...", @"MOOPullGesture", @"Loading table view contents");
+    self.pullToRefreshText = NSLocalizedStringFromTable(@"Pull to refresh...", @"MOOPullGesture", @"User may pull table view down to refresh");
+    self.releaseText = NSLocalizedStringFromTable(@"Release to refresh...", @"MOOPullGesture", @"User pulled table view down past threshold");
     
     self.arrowFadeAnimationDuration = 0.18;
     self.arrowSpinAnimationDuration = 0.18;
