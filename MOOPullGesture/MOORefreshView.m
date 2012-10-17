@@ -60,7 +60,10 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.titleLabel.textAlignment = UITextAlignmentCenter;
+#pragma clang diagnostic pop
     
     // Set defaults
     self.loadingText = NSLocalizedStringFromTable(@"Loading...", @"MOOPullGesture", @"Loading table view contents");
