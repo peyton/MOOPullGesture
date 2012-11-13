@@ -60,12 +60,15 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     self.titleLabel.textAlignment = UITextAlignmentCenter;
+#pragma clang diagnostic pop
     
     // Set defaults
-    self.loadingText = NSLocalizedStringFromTable(@"Loading\u2026", @"MOOPullGesture", @"Loading table view contents");
-    self.pullToRefreshText = NSLocalizedStringFromTable(@"Pull to refresh\u2026", @"MOOPullGesture", @"User may pull table view down to refresh");
-    self.releaseText = NSLocalizedStringFromTable(@"Release to refresh\u2026", @"MOOPullGesture", @"User pulled table view down past threshold");
+    self.loadingText = NSLocalizedStringFromTable(@"Loading...", @"MOOPullGesture", @"Loading table view contents");
+    self.pullToRefreshText = NSLocalizedStringFromTable(@"Pull to refresh...", @"MOOPullGesture", @"User may pull table view down to refresh");
+    self.releaseText = NSLocalizedStringFromTable(@"Release to refresh...", @"MOOPullGesture", @"User pulled table view down past threshold");
     
     self.arrowFadeAnimationDuration = 0.18;
     self.arrowSpinAnimationDuration = 0.18;

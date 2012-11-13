@@ -8,8 +8,8 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/peyton/MOOPullGesture.git', :tag => 'v0.1.0' }
   s.description = 'MOOPullGesture implements pull gestures on table views through a UIGestureRecognizer subclass. Built to be extensible, MOOPullGesture comes with pull-to-create and pull-to-refresh.'
   s.platform = :ios
-  s.source_files = 'MOOPullGesture'
-  s.clean_paths = "Demo Project"
+  s.source_files = 'MOOPullGesture/**/*.{h,m}'
+  s.header_mappings_dir = '.'
   s.frameworks = 'QuartzCore'
-  s.requires_arc = false
+  s.requires_arc = true
 end

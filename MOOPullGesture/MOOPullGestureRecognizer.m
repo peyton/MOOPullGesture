@@ -186,6 +186,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     id newValue = [change valueForKey:NSKeyValueChangeNewKey];
     
     if (context == (__bridge void *)MOOAttachedViewKeyPath)
+	{
         if ([newValue isKindOfClass:[UIScrollView class]])
         {
             _pullGestureFlags.isBoundToScrollView = YES;
@@ -194,6 +195,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
         } else {
             _pullGestureFlags.isBoundToScrollView = NO;
         }
+	}
 }
 
 @end
