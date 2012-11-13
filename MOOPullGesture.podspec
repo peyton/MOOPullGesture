@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.description = 'MOOPullGesture implements pull gestures on table views through a UIGestureRecognizer subclass. Built to be extensible, MOOPullGesture comes with pull-to-create and pull-to-refresh.'
   s.platform = :ios
   s.source_files = 'MOOPullGesture/**/*.{h,m}'
-  s.header_mappings_dir = '.'
+  s.header_mappings_dir = 'MOOPullGesture'
   s.frameworks = 'QuartzCore'
   s.requires_arc = true
 end
