@@ -8,6 +8,12 @@
 
 #import "MOORefreshView.h"
 
+#ifdef __IPHONE_6_0
+# define TEXT_ALIGN_CENTER NSTextAlignmentCenter
+#else
+# define TEXT_ALIGN_CENTER UITextAlignmentCenter
+#endif
+
 // KVO key paths
 static NSString * const MOORefreshTriggerViewActivityViewKeyPath = @"activityView";
 static NSString * const MOORefreshTriggerViewArrowViewKeyPath = @"arrowView";
@@ -60,10 +66,7 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.titleLabel.textAlignment = UITextAlignmentCenter;
-#pragma clang diagnostic pop
+    self.titleLabel.textAlignment = TEXT_ALIGN_CENTER;
     
     // Set defaults
     self.loadingText = NSLocalizedStringFromTable(@"Loading...", @"MOOPullGesture", @"Loading table view contents");
