@@ -1,6 +1,6 @@
 //
 //  MOOPullGestureRecognizerSubclass.h
-//  MOOPullGesture Demo
+//  MOOPullGesture
 //
 //  Created by Peyton Randolph on 2/21/12.
 //

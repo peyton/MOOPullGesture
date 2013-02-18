@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'MOOPullGesture Demo' target in the 'MOOPullGesture Demo' project
+// Prefix header for all source files of the 'Demo Project' target in the 'Demo Project' project
 //
 
 #import <Availability.h>

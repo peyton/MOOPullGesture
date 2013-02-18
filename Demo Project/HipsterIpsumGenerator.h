@@ -1,6 +1,6 @@
 //
 //  HipsterIpsumGenerator.h
-//  MOOPullGesture Demo
+//  Demo Project
 //
 //  Created by Peyton Randolph on 2/22/12.
 //

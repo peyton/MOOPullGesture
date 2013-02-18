@@ -1,15 +1,15 @@
 //
-//  PullToCreateDataSource.m
-//  MOOPullGesture Demo
+//  PullToRefreshDataSource.m
+//  Demo Project
 //
 //  Created by Peyton Randolph on 2/21/12.
 //
 
-#import "PullToCreateDataSource.h"
+#import "PullToRefreshDataSource.h"
 
 #import "HipsterIpsumGenerator.h"
 
-@implementation PullToCreateDataSource
+@implementation PullToRefreshDataSource
 @synthesize numberOfRows = _numberOfRows;
 
 - (id)init;

@@ -1,6 +1,6 @@
 //
 //  CustomTriggerViewController.h
-//  MOOPullGesture Demo
+//  Demo Project
 //
 //  Created by Peyton Randolph on 5/29/12.
 //

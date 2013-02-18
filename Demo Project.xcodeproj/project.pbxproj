@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C36417514F41CA2005DE008 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C36417414F41CA2005DE008 /* UIKit.framework */; };
+		9C36417714F41CA2005DE008 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C36417614F41CA2005DE008 /* Foundation.framework */; };
+		9C36417914F41CA2005DE008 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C36417814F41CA2005DE008 /* CoreGraphics.framework */; };
+		9CB3D31A14F59143006283F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB3D31914F59143006283F0 /* QuartzCore.framework */; };
+		9CD10B0016D286CB00BA620E /* MOOCreateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10AF016D286CB00BA620E /* MOOCreateView.m */; };
+		9CD10B0116D286CB00BA620E /* MOOPullGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10AF216D286CB00BA620E /* MOOPullGestureRecognizer.m */; };
+		9CD10B0216D286CB00BA620E /* MOORefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10AF516D286CB00BA620E /* MOORefreshView.m */; };
+		9CD10B0316D286CB00BA620E /* Arrow-Bucket.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10AF816D286CB00BA620E /* Arrow-Bucket.png */; };
+		9CD10B0416D286CB00BA620E /* Arrow-Bucket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10AF916D286CB00BA620E /* Arrow-Bucket@2x.png */; };
+		9CD10B0516D286CB00BA620E /* Circle-Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10AFA16D286CB00BA620E /* Circle-Arrow.png */; };
+		9CD10B0616D286CB00BA620E /* Circle-Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10AFB16D286CB00BA620E /* Circle-Arrow@2x.png */; };
+		9CD10B0716D286CB00BA620E /* MOOPullGesture.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10AFC16D286CB00BA620E /* MOOPullGesture.strings */; };
+		9CD10B0D16D287A500BA620E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B0A16D287A500BA620E /* AppDelegate.m */; };
+		9CD10B0E16D287A500BA620E /* HipsterIpsumGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B0C16D287A500BA620E /* HipsterIpsumGenerator.m */; };
+		9CD10B1316D287DD00BA620E /* PullToRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B1216D287DD00BA620E /* PullToRefreshViewController.m */; };
+		9CD10B1816D287E800BA620E /* PullToRefreshDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B1516D287E800BA620E /* PullToRefreshDataSource.m */; };
+		9CD10B1916D287E800BA620E /* PullToRefreshDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B1716D287E800BA620E /* PullToRefreshDelegate.m */; };
+		9CD10B1E16D287F300BA620E /* PullToCreateDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B1B16D287F300BA620E /* PullToCreateDataSource.m */; };
+		9CD10B1F16D287F300BA620E /* PullToCreateDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B1D16D287F300BA620E /* PullToCreateDelegate.m */; };
+		9CD10B2216D287FA00BA620E /* PullToCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B2116D287FA00BA620E /* PullToCreateViewController.m */; };
+		9CD10B2716D2881200BA620E /* CustomTriggerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B2416D2881200BA620E /* CustomTriggerView.m */; };
+		9CD10B2816D2881200BA620E /* CustomTriggerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B2616D2881200BA620E /* CustomTriggerViewController.m */; };
+		9CD10B2D16D2881900BA620E /* CustomTriggerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B2A16D2881900BA620E /* CustomTriggerDataSource.m */; };
+		9CD10B2E16D2881900BA620E /* CustomTriggerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B2C16D2881900BA620E /* CustomTriggerDelegate.m */; };
+		9CD10B3A16D2885D00BA620E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10B3016D2885C00BA620E /* Default-568h@2x.png */; };
+		9CD10B3C16D2885D00BA620E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10B3316D2885C00BA620E /* InfoPlist.strings */; };
+		9CD10B3D16D2885D00BA620E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10B3516D2885C00BA620E /* Icon.png */; };
+		9CD10B3E16D2885D00BA620E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10B3616D2885C00BA620E /* Icon@2x.png */; };
+		9CD10B3F16D2885D00BA620E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD10B3716D2885C00BA620E /* main.m */; };
+		9CD10B4016D2885D00BA620E /* Square.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10B3816D2885C00BA620E /* Square.png */; };
+		9CD10B4116D2885D00BA620E /* Square@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CD10B3916D2885C00BA620E /* Square@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9C36417014F41CA2005DE008 /* Demo Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C36417414F41CA2005DE008 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9C36417614F41CA2005DE008 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9C36417814F41CA2005DE008 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9CB3D31914F59143006283F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9CD10AEF16D286CB00BA620E /* MOOCreateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOCreateView.h; sourceTree = "<group>"; };
+		9CD10AF016D286CB00BA620E /* MOOCreateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOCreateView.m; sourceTree = "<group>"; };
+		9CD10AF116D286CB00BA620E /* MOOPullGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOPullGestureRecognizer.h; sourceTree = "<group>"; };
+		9CD10AF216D286CB00BA620E /* MOOPullGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOOPullGestureRecognizer.m; sourceTree = "<group>"; };
+		9CD10AF316D286CB00BA620E /* MOOPullGestureRecognizerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOPullGestureRecognizerSubclass.h; sourceTree = "<group>"; };
+		9CD10AF416D286CB00BA620E /* MOORefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOORefreshView.h; sourceTree = "<group>"; };
+		9CD10AF516D286CB00BA620E /* MOORefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOORefreshView.m; sourceTree = "<group>"; };
+		9CD10AF616D286CB00BA620E /* MOOTriggerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOTriggerView.h; sourceTree = "<group>"; };
+		9CD10AF816D286CB00BA620E /* Arrow-Bucket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow-Bucket.png"; sourceTree = "<group>"; };
+		9CD10AF916D286CB00BA620E /* Arrow-Bucket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow-Bucket@2x.png"; sourceTree = "<group>"; };
+		9CD10AFA16D286CB00BA620E /* Circle-Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circle-Arrow.png"; sourceTree = "<group>"; };
+		9CD10AFB16D286CB00BA620E /* Circle-Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circle-Arrow@2x.png"; sourceTree = "<group>"; };
+		9CD10AFD16D286CB00BA620E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MOOPullGesture.strings; sourceTree = "<group>"; };
+		9CD10AFE16D286CB00BA620E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MOOPullGesture.strings; sourceTree = "<group>"; };
+		9CD10AFF16D286CB00BA620E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/MOOPullGesture.strings; sourceTree = "<group>"; };
+		9CD10B0916D287A500BA620E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Demo Project/AppDelegate.h"; sourceTree = "<group>"; };
+		9CD10B0A16D287A500BA620E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "Demo Project/AppDelegate.m"; sourceTree = "<group>"; };
+		9CD10B0B16D287A500BA620E /* HipsterIpsumGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HipsterIpsumGenerator.h; path = "Demo Project/HipsterIpsumGenerator.h"; sourceTree = "<group>"; };
+		9CD10B0C16D287A500BA620E /* HipsterIpsumGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HipsterIpsumGenerator.m; path = "Demo Project/HipsterIpsumGenerator.m"; sourceTree = "<group>"; };
+		9CD10B1116D287DD00BA620E /* PullToRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToRefreshViewController.h; path = "Demo Project/PullToRefreshViewController.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B1216D287DD00BA620E /* PullToRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToRefreshViewController.m; path = "Demo Project/PullToRefreshViewController.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B1416D287E800BA620E /* PullToRefreshDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToRefreshDataSource.h; path = "Demo Project/PullToRefreshDataSource.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B1516D287E800BA620E /* PullToRefreshDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToRefreshDataSource.m; path = "Demo Project/PullToRefreshDataSource.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B1616D287E800BA620E /* PullToRefreshDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToRefreshDelegate.h; path = "Demo Project/PullToRefreshDelegate.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B1716D287E800BA620E /* PullToRefreshDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToRefreshDelegate.m; path = "Demo Project/PullToRefreshDelegate.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B1A16D287F300BA620E /* PullToCreateDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToCreateDataSource.h; path = "Demo Project/PullToCreateDataSource.h"; sourceTree = "<group>"; };
+		9CD10B1B16D287F300BA620E /* PullToCreateDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToCreateDataSource.m; path = "Demo Project/PullToCreateDataSource.m"; sourceTree = "<group>"; };
+		9CD10B1C16D287F300BA620E /* PullToCreateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToCreateDelegate.h; path = "Demo Project/PullToCreateDelegate.h"; sourceTree = "<group>"; };
+		9CD10B1D16D287F300BA620E /* PullToCreateDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToCreateDelegate.m; path = "Demo Project/PullToCreateDelegate.m"; sourceTree = "<group>"; };
+		9CD10B2016D287FA00BA620E /* PullToCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullToCreateViewController.h; path = "Demo Project/PullToCreateViewController.h"; sourceTree = "<group>"; };
+		9CD10B2116D287FA00BA620E /* PullToCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullToCreateViewController.m; path = "Demo Project/PullToCreateViewController.m"; sourceTree = "<group>"; };
+		9CD10B2316D2881200BA620E /* CustomTriggerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTriggerView.h; path = "Demo Project/CustomTriggerView.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B2416D2881200BA620E /* CustomTriggerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTriggerView.m; path = "Demo Project/CustomTriggerView.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B2516D2881200BA620E /* CustomTriggerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTriggerViewController.h; path = "Demo Project/CustomTriggerViewController.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B2616D2881200BA620E /* CustomTriggerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTriggerViewController.m; path = "Demo Project/CustomTriggerViewController.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B2916D2881900BA620E /* CustomTriggerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTriggerDataSource.h; path = "Demo Project/CustomTriggerDataSource.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B2A16D2881900BA620E /* CustomTriggerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTriggerDataSource.m; path = "Demo Project/CustomTriggerDataSource.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B2B16D2881900BA620E /* CustomTriggerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTriggerDelegate.h; path = "Demo Project/CustomTriggerDelegate.h"; sourceTree = SOURCE_ROOT; };
+		9CD10B2C16D2881900BA620E /* CustomTriggerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTriggerDelegate.m; path = "Demo Project/CustomTriggerDelegate.m"; sourceTree = SOURCE_ROOT; };
+		9CD10B3016D2885C00BA620E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Demo Project/Default-568h@2x.png"; sourceTree = "<group>"; };
+		9CD10B3116D2885C00BA620E /* Demo Project-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Demo Project-Info.plist"; path = "Demo Project/Demo Project-Info.plist"; sourceTree = "<group>"; };
+		9CD10B3216D2885C00BA620E /* Demo Project-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Demo Project-Prefix.pch"; path = "Demo Project/Demo Project-Prefix.pch"; sourceTree = "<group>"; };
+		9CD10B3416D2885C00BA620E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Demo Project/en.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		9CD10B3516D2885C00BA620E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = "Demo Project/Icon.png"; sourceTree = "<group>"; };
+		9CD10B3616D2885C00BA620E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Demo Project/Icon@2x.png"; sourceTree = "<group>"; };
+		9CD10B3716D2885C00BA620E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Demo Project/main.m"; sourceTree = "<group>"; };
+		9CD10B3816D2885C00BA620E /* Square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Square.png; path = "Demo Project/Square.png"; sourceTree = "<group>"; };
+		9CD10B3916D2885C00BA620E /* Square@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Square@2x.png"; path = "Demo Project/Square@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C36416D14F41CA2005DE008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CB3D31A14F59143006283F0 /* QuartzCore.framework in Frameworks */,
+				9C36417514F41CA2005DE008 /* UIKit.framework in Frameworks */,
+				9C36417714F41CA2005DE008 /* Foundation.framework in Frameworks */,
+				9C36417914F41CA2005DE008 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C36416514F41CA2005DE008 = {
+			isa = PBXGroup;
+			children = (
+				9CD10B0816D2879500BA620E /* Demo Project */,
+				9C3641AB14F435D1005DE008 /* External */,
+				9C36417314F41CA2005DE008 /* Frameworks */,
+				9C36417114F41CA2005DE008 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C36417114F41CA2005DE008 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C36417014F41CA2005DE008 /* Demo Project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C36417314F41CA2005DE008 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9CB3D31914F59143006283F0 /* QuartzCore.framework */,
+				9C36417414F41CA2005DE008 /* UIKit.framework */,
+				9C36417614F41CA2005DE008 /* Foundation.framework */,
+				9C36417814F41CA2005DE008 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C3641A814F4344C005DE008 /* Pull to Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B1116D287DD00BA620E /* PullToRefreshViewController.h */,
+				9CD10B1216D287DD00BA620E /* PullToRefreshViewController.m */,
+				9C3641BC14F439F9005DE008 /* Support */,
+			);
+			name = "Pull to Refresh";
+			path = "MOOPullGesture Demo";
+			sourceTree = "<group>";
+		};
+		9C3641AB14F435D1005DE008 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10AEE16D286CB00BA620E /* MOOPullGesture */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		9C3641BC14F439F9005DE008 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B1416D287E800BA620E /* PullToRefreshDataSource.h */,
+				9CD10B1516D287E800BA620E /* PullToRefreshDataSource.m */,
+				9CD10B1616D287E800BA620E /* PullToRefreshDelegate.h */,
+				9CD10B1716D287E800BA620E /* PullToRefreshDelegate.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		9CD10AEE16D286CB00BA620E /* MOOPullGesture */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10AEF16D286CB00BA620E /* MOOCreateView.h */,
+				9CD10AF016D286CB00BA620E /* MOOCreateView.m */,
+				9CD10AF116D286CB00BA620E /* MOOPullGestureRecognizer.h */,
+				9CD10AF216D286CB00BA620E /* MOOPullGestureRecognizer.m */,
+				9CD10AF316D286CB00BA620E /* MOOPullGestureRecognizerSubclass.h */,
+				9CD10AF416D286CB00BA620E /* MOORefreshView.h */,
+				9CD10AF516D286CB00BA620E /* MOORefreshView.m */,
+				9CD10AF616D286CB00BA620E /* MOOTriggerView.h */,
+				9CD10AF716D286CB00BA620E /* Resources */,
+			);
+			path = MOOPullGesture;
+			sourceTree = "<group>";
+		};
+		9CD10AF716D286CB00BA620E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10AF816D286CB00BA620E /* Arrow-Bucket.png */,
+				9CD10AF916D286CB00BA620E /* Arrow-Bucket@2x.png */,
+				9CD10AFA16D286CB00BA620E /* Circle-Arrow.png */,
+				9CD10AFB16D286CB00BA620E /* Circle-Arrow@2x.png */,
+				9CD10AFC16D286CB00BA620E /* MOOPullGesture.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9CD10B0816D2879500BA620E /* Demo Project */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B0916D287A500BA620E /* AppDelegate.h */,
+				9CD10B0A16D287A500BA620E /* AppDelegate.m */,
+				9CD10B0B16D287A500BA620E /* HipsterIpsumGenerator.h */,
+				9CD10B0C16D287A500BA620E /* HipsterIpsumGenerator.m */,
+				9CD10B0F16D287B300BA620E /* Pull to Create */,
+				9C3641A814F4344C005DE008 /* Pull to Refresh */,
+				9CF65D5B15757DEA00DE73D6 /* Custom Trigger */,
+				9CD10B2F16D2885100BA620E /* Supporting Files */,
+			);
+			name = "Demo Project";
+			sourceTree = "<group>";
+		};
+		9CD10B0F16D287B300BA620E /* Pull to Create */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B2016D287FA00BA620E /* PullToCreateViewController.h */,
+				9CD10B2116D287FA00BA620E /* PullToCreateViewController.m */,
+				9CD10B1016D287B900BA620E /* Support */,
+			);
+			name = "Pull to Create";
+			sourceTree = "<group>";
+		};
+		9CD10B1016D287B900BA620E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B1A16D287F300BA620E /* PullToCreateDataSource.h */,
+				9CD10B1B16D287F300BA620E /* PullToCreateDataSource.m */,
+				9CD10B1C16D287F300BA620E /* PullToCreateDelegate.h */,
+				9CD10B1D16D287F300BA620E /* PullToCreateDelegate.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		9CD10B2F16D2885100BA620E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B3016D2885C00BA620E /* Default-568h@2x.png */,
+				9CD10B3116D2885C00BA620E /* Demo Project-Info.plist */,
+				9CD10B3216D2885C00BA620E /* Demo Project-Prefix.pch */,
+				9CD10B3316D2885C00BA620E /* InfoPlist.strings */,
+				9CD10B3516D2885C00BA620E /* Icon.png */,
+				9CD10B3616D2885C00BA620E /* Icon@2x.png */,
+				9CD10B3716D2885C00BA620E /* main.m */,
+				9CD10B3816D2885C00BA620E /* Square.png */,
+				9CD10B3916D2885C00BA620E /* Square@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CF65D5B15757DEA00DE73D6 /* Custom Trigger */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B2316D2881200BA620E /* CustomTriggerView.h */,
+				9CD10B2416D2881200BA620E /* CustomTriggerView.m */,
+				9CD10B2516D2881200BA620E /* CustomTriggerViewController.h */,
+				9CD10B2616D2881200BA620E /* CustomTriggerViewController.m */,
+				9CF65D6015757E6800DE73D6 /* Support */,
+			);
+			name = "Custom Trigger";
+			path = "MOOPullGesture Demo";
+			sourceTree = "<group>";
+		};
+		9CF65D6015757E6800DE73D6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				9CD10B2916D2881900BA620E /* CustomTriggerDataSource.h */,
+				9CD10B2A16D2881900BA620E /* CustomTriggerDataSource.m */,
+				9CD10B2B16D2881900BA620E /* CustomTriggerDelegate.h */,
+				9CD10B2C16D2881900BA620E /* CustomTriggerDelegate.m */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C36416F14F41CA2005DE008 /* Demo Project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C36419C14F41CA2005DE008 /* Build configuration list for PBXNativeTarget "Demo Project" */;
+			buildPhases = (
+				9C36416C14F41CA2005DE008 /* Sources */,
+				9C36416D14F41CA2005DE008 /* Frameworks */,
+				9C36416E14F41CA2005DE008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Demo Project";
+			productName = "MOOPullGesture Demo";
+			productReference = 9C36417014F41CA2005DE008 /* Demo Project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C36416714F41CA2005DE008 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = pandolph;
+			};
+			buildConfigurationList = 9C36416A14F41CA2005DE008 /* Build configuration list for PBXProject "Demo Project" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				es,
+				ru,
+			);
+			mainGroup = 9C36416514F41CA2005DE008;
+			productRefGroup = 9C36417114F41CA2005DE008 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C36416F14F41CA2005DE008 /* Demo Project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9C36416E14F41CA2005DE008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CD10B0316D286CB00BA620E /* Arrow-Bucket.png in Resources */,
+				9CD10B0416D286CB00BA620E /* Arrow-Bucket@2x.png in Resources */,
+				9CD10B0516D286CB00BA620E /* Circle-Arrow.png in Resources */,
+				9CD10B0616D286CB00BA620E /* Circle-Arrow@2x.png in Resources */,
+				9CD10B0716D286CB00BA620E /* MOOPullGesture.strings in Resources */,
+				9CD10B3A16D2885D00BA620E /* Default-568h@2x.png in Resources */,
+				9CD10B3C16D2885D00BA620E /* InfoPlist.strings in Resources */,
+				9CD10B3D16D2885D00BA620E /* Icon.png in Resources */,
+				9CD10B3E16D2885D00BA620E /* Icon@2x.png in Resources */,
+				9CD10B4016D2885D00BA620E /* Square.png in Resources */,
+				9CD10B4116D2885D00BA620E /* Square@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C36416C14F41CA2005DE008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CD10B0016D286CB00BA620E /* MOOCreateView.m in Sources */,
+				9CD10B0116D286CB00BA620E /* MOOPullGestureRecognizer.m in Sources */,
+				9CD10B0216D286CB00BA620E /* MOORefreshView.m in Sources */,
+				9CD10B0D16D287A500BA620E /* AppDelegate.m in Sources */,
+				9CD10B0E16D287A500BA620E /* HipsterIpsumGenerator.m in Sources */,
+				9CD10B1316D287DD00BA620E /* PullToRefreshViewController.m in Sources */,
+				9CD10B1816D287E800BA620E /* PullToRefreshDataSource.m in Sources */,
+				9CD10B1916D287E800BA620E /* PullToRefreshDelegate.m in Sources */,
+				9CD10B1E16D287F300BA620E /* PullToCreateDataSource.m in Sources */,
+				9CD10B1F16D287F300BA620E /* PullToCreateDelegate.m in Sources */,
+				9CD10B2216D287FA00BA620E /* PullToCreateViewController.m in Sources */,
+				9CD10B2716D2881200BA620E /* CustomTriggerView.m in Sources */,
+				9CD10B2816D2881200BA620E /* CustomTriggerViewController.m in Sources */,
+				9CD10B2D16D2881900BA620E /* CustomTriggerDataSource.m in Sources */,
+				9CD10B2E16D2881900BA620E /* CustomTriggerDelegate.m in Sources */,
+				9CD10B3F16D2885D00BA620E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9CD10AFC16D286CB00BA620E /* MOOPullGesture.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9CD10AFD16D286CB00BA620E /* en */,
+				9CD10AFE16D286CB00BA620E /* es */,
+				9CD10AFF16D286CB00BA620E /* ru */,
+			);
+			name = MOOPullGesture.strings;
+			sourceTree = "<group>";
+		};
+		9CD10B3316D2885C00BA620E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9CD10B3416D2885C00BA620E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9C36419A14F41CA2005DE008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9C36419B14F41CA2005DE008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9C36419D14F41CA2005DE008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo Project/Demo Project-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo Project/Demo Project-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "Demo Project";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9C36419E14F41CA2005DE008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo Project/Demo Project-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo Project/Demo Project-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "Demo Project";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C36416A14F41CA2005DE008 /* Build configuration list for PBXProject "Demo Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C36419A14F41CA2005DE008 /* Debug */,
+				9C36419B14F41CA2005DE008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C36419C14F41CA2005DE008 /* Build configuration list for PBXNativeTarget "Demo Project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C36419D14F41CA2005DE008 /* Debug */,
+				9C36419E14F41CA2005DE008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C36416714F41CA2005DE008 /* Project object */;
+}

@@ -1,6 +1,6 @@
 //
-//  MOOView.h
-//  MOOPullGesture Demo
+//  MOOTriggerView.h
+//  MOOPullGesture
 //
 //  Created by Peyton Randolph on 2/21/12.
 //
