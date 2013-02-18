@@ -96,8 +96,6 @@ static NSString * const MOORefreshTriggerViewTitleLabelKeyPath = @"titleLabel";
     self.loadingText = nil;
     self.pullToRefreshText = nil;
     self.releaseText = nil;
-    
-    AH_SUPER_DEALLOC;
 }
 
 #pragma mark - Subview methods

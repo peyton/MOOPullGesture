@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Support/ARCHelper.h"
 #import "MOOTriggerView.h"
 
 @class CATransformLayer, MOOCreateView;

@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Support/ARCHelper.h"
-
 // States
 typedef enum {
     MOOPullIdle = 0, // Threshold not reached, e.g. "Pull to refresh..."

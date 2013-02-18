@@ -65,7 +65,6 @@
 		9CB3D2CE14F45E9D006283F0 /* Arrow-Bucket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow-Bucket@2x.png"; sourceTree = "<group>"; };
 		9CB3D2EF14F479EA006283F0 /* MOOTriggerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOOTriggerView.h; sourceTree = "<group>"; };
 		9CB3D2F414F48A37006283F0 /* MOOPullGestureRecognizerSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MOOPullGestureRecognizerSubclass.h; sourceTree = "<group>"; };
-		9CB3D2F514F48D8F006283F0 /* ARCHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARCHelper.h; path = Support/ARCHelper.h; sourceTree = "<group>"; };
 		9CB3D2F614F49AF8006283F0 /* PullToRefreshDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshDataSource.h; sourceTree = "<group>"; };
 		9CB3D2F714F49AF8006283F0 /* PullToRefreshDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshDataSource.m; sourceTree = "<group>"; };
 		9CB3D2F914F49B08006283F0 /* PullToRefreshDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshDelegate.h; sourceTree = "<group>"; };
@@ -226,7 +225,6 @@
 				9CB3D30714F544C1006283F0 /* MOOCreateView.m */,
 				9CB3D2C514F45701006283F0 /* MOORefreshView.h */,
 				9CB3D2C614F45701006283F0 /* MOORefreshView.m */,
-				9CB3D2ED14F4779F006283F0 /* Support */,
 				9CB3D2B714F45631006283F0 /* Resources */,
 			);
 			name = MOOPullGesture;
@@ -242,14 +240,6 @@
 				9CB3D2B914F45631006283F0 /* Circle-Arrow@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		9CB3D2ED14F4779F006283F0 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				9CB3D2F514F48D8F006283F0 /* ARCHelper.h */,
-			);
-			name = Support;
 			sourceTree = "<group>";
 		};
 		9CF65D5B15757DEA00DE73D6 /* Custom Trigger */ = {

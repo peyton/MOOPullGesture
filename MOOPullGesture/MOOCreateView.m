@@ -8,7 +8,6 @@
 #import "MOOCreateView.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "ARCHelper.h"
 
 @interface MOOCreateView ()
 
@@ -91,8 +90,6 @@
     self.configurationBlock = nil;
     self.gradientView = nil;
     self.rotationView = nil;
-    
-    AH_SUPER_DEALLOC;
 }
 
 #pragma mark - Subview methods

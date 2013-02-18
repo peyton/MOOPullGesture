@@ -10,7 +10,6 @@
 #import "MOOPullGestureRecognizerSubclass.h"
 #import <UIKit/UIGestureRecognizerSubclass.h>
 
-#import "Support/ARCHelper.h"
 #import "MOOTriggerView.h"
 #import "MOORefreshView.h"
 
@@ -41,8 +40,6 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
     
     // Clean up memory
     self.triggerView = nil;
-    
-    AH_SUPER_DEALLOC;
 }
 
 #pragma mark - MOOPullGestureRecognizer methods

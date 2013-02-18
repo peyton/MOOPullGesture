@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "Support/ARCHelper.h"
 #import "MOOTriggerView.h"
 
 @interface MOORefreshView : UIView <MOOTriggerView> 
