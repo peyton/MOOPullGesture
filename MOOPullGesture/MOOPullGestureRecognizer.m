@@ -62,7 +62,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 {
     [super touchesBegan:touches withEvent:event];
     
-    if (self.failed = [self shouldFail])
+    if ((self.failed = [self shouldFail]))
         return;
 }
 
@@ -70,7 +70,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 {
     [super touchesMoved:touches withEvent:event];
     
-    if (self.failed = [self shouldFail])
+    if ((self.failed = [self shouldFail]))
         return;
     
     if (self.scrollView.contentOffset.y <= CGRectGetMinY(self.triggerView.frame))
@@ -83,7 +83,7 @@ static NSString * const MOOAttachedViewKeyPath = @"view";
 {
     [super touchesEnded:touches withEvent:event];
     
-    if (self.failed = [self shouldFail])
+    if ((self.failed = [self shouldFail]))
         return;
     
     if (self.pullState == MOOPullActive)
